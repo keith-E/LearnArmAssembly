@@ -7,7 +7,7 @@ public class StackPointer {
         this.sp = startValue;
     }
 
-    public void setSP(int[] increment) {
+   /* public void setSP(int[] increment) {
 
     }
 
@@ -16,6 +16,6 @@ public class StackPointer {
     }
 
     private int[] addIncrement(int[] increment) {
-        
-    }
+
+    }*/
 }
