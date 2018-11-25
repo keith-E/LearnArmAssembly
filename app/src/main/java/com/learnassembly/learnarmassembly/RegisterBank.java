@@ -22,12 +22,16 @@ public class RegisterBank {
      */
     public int[] getRegister(int register) {
         try {
-            return this.rb.get(index);
+            return this.rb.get(register);
         }
 
-        catch {
+        catch(IndexOutOfBoundsException e) {
             System.err.print("Invalid register.");
         }
+
+        // return zero if error
+        int[] empty = new int[32];
+        return empty;
     }
 
     /*
@@ -38,7 +42,7 @@ public class RegisterBank {
             this.rb.set(register, num);
         }
 
-        catch {
+        catch(IndexOutOfBoundsException e) {
             System.err.print("Invalid register.");
         }
     }
