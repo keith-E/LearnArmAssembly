@@ -7,13 +7,14 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:id="@+id/Editor"
+        android:id="@+id/registryBank"
         android:layout_width="0dp"
-        android:layout_height="216dp"
+        android:layout_height="256dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,16 +27,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/r0Label"
+                    android:layout_width="24dp"
                     android:layout_height="wrap_content"
-                    android:text="R0" />
+                    android:text="R0"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r0Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -43,16 +46,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/r1Label"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:text="R1" />
+                    android:text="R1"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r1Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -60,16 +65,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r2Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R2" />
+                    android:text="R2"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r2Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -77,16 +84,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r3Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R3" />
+                    android:text="R3"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r3Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -94,16 +103,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r4Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R4" />
+                    android:text="R4"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r4Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -111,16 +122,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r5Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R5" />
+                    android:text="R5"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r5Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -128,16 +141,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r6Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R6" />
+                    android:text="R6"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r6Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -145,16 +160,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r7Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R7" />
+                    android:text="R7"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r7Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -162,16 +179,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r8Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R8" />
+                    android:text="R8"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r8Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -179,16 +198,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r9Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R9" />
+                    android:text="R9"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r9Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -196,16 +217,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/r10Label"
+                    android:layout_width="36dp"
                     android:layout_height="wrap_content"
-                    android:text="R10" />
+                    android:text="R10"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r10Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -213,16 +236,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r11Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R11" />
+                    android:text="R11"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r11Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -230,16 +255,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/r12Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R12" />
+                    android:text="R12"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/r12Contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -247,16 +274,18 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/spLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R13" />
+                    android:text="SP"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/spContents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow
@@ -264,31 +293,35 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/lrLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LR" />
+                    android:text="LR"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/lrContents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/pcLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PC" />
+                    android:text="PC"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/pcContents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000 0000 0000 0000 0000 0000 0000 0000" />
+                    android:text="0000 0000 0000 0000 0000 0000 0000 0000"
+                    android:textSize="16dp" />
             </TableRow>
 
         </TableLayout>
@@ -303,7 +336,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Editor">
+        app:layout_constraintTop_toBottomOf="@+id/registryBank">
 
         <TableRow
             android:layout_width="match_parent"
@@ -363,109 +396,65 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/editText"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="1" />
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="2" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-            <EditText
-                android:id="@+id/editText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="3" />
+                    <TextView
+                        android:id="@+id/line1Editor"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:text="1" />
 
-            <EditText
-                android:id="@+id/editText4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="4" />
+                    <TextView
+                        android:id="@+id/line1Label"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/editText5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="5" />
+                    <TextView
+                        android:id="@+id/line1Command"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/editText6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="6" />
+                    <TextView
+                        android:id="@+id/line1Arg1"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/editText7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="7" />
+                    <TextView
+                        android:id="@+id/line1Arg2"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/editText8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="8" />
+                    <TextView
+                        android:id="@+id/line1Arg3"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/editText9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="9" />
+                </TableRow>
 
-            <EditText
-                android:id="@+id/editText10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="10" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-            <EditText
-                android:id="@+id/editText11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="11" />
+                </TableRow>
 
-            <EditText
-                android:id="@+id/editText12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="12" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-            <EditText
-                android:id="@+id/editText13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="13" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
         </LinearLayout>
     </ScrollView>
 
