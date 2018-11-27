@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">LearnArmAssembly</string>
+    <string name="thirtyTwoBitBinaryZero">0000 0000 0000 0000 0000 0000 0000 0000</string>
+    <string name="registerZeroLabel">R0</string>
+    <string name="registerOneLabel">R1</string>
+    <string name="registerTwoLabel">R2</string>
+    <string name="registerThreeLabel">R3</string>
+    <string name="registerFourLabel">R4</string>
+    <string name="registerFiveLabel">R5</string>
+    <string name="registerSixLabel">R6</string>
+    <string name="registerSevenLabel">R7</string>
+    <string name="registerEightLabel">R8</string>
+    <string name="registerNineLabel">R9</string>
+    <string name="registerTenLabel">R10</string>
+    <string name="registerElevenLabel">R11</string>
+    <string name="registerTwelveLabel">R12</string>
+    <string name="stackPointerLabel">SP</string>
+    <string name="linkRegisterLabel">LR</string>
+    <string name="programCounterLabel">PR</string>
+    <string name="zeroBit">0</string>
+    <string name="oneBit">1</string>
+    <string name="csprDescriptionLabel">CSPR Status Bits (NZCV)</string>
 </resources>
