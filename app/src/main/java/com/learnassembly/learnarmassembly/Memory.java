@@ -12,6 +12,8 @@ public class Memory {
         addresses.
      */
     public Memory() {
+        // initialization is off here, need to recheck, not setting
+        // up properly
         for (int i = 0; i < 128; i+=8) {
             int[] address = createAddress(i);
             int[] zeros = new int[32];  // default to zero if nothing stored
