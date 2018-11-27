@@ -21,15 +21,12 @@ public class RegisterBank {
         Retrieve binary number at given register number.
      */
     public int[] getRegister(int register) {
-        try {
+        if (register >= 0 || register < 32) {
             return this.rb.get(register);
         }
 
-        catch(IndexOutOfBoundsException e) {
-            System.err.print("Invalid register.");
-        }
-
         // return zero if error
+        System.out.println("Invalid register.");
         int[] empty = new int[32];
         return empty;
     }
@@ -38,12 +35,12 @@ public class RegisterBank {
         Set binary number at given register number.
      */
     public void setRegister(int register, int[] num) {
-        try {
+        if (register >=0 || register < 32) {
             this.rb.set(register, num);
         }
 
-        catch(IndexOutOfBoundsException e) {
-            System.err.print("Invalid register.");
+        else {
+            System.out.println("Invalid register.");
         }
     }
 }
