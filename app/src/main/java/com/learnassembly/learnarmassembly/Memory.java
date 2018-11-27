@@ -12,7 +12,11 @@ public class Memory {
         addresses.
      */
     public Memory() {
-        // TODO
+        for (int i = 0; i < 128; i+=8) {
+            int[] address = createAddress(i);
+            int[] zeros = new int[32];  // default to zero if nothing stored
+            memory.put(address, zeros);
+        }
     }
 
     /*
@@ -39,5 +43,29 @@ public class Memory {
             System.err.print("Invalid memory address.");
             return error;
         }
+    }
+
+    /*
+        Create 32-bit memory address in binary.
+     */
+    private int[] createAddress(int decimal) {
+        int[] address = new int[32];
+        int power = address.length - 1;
+        int dec = Math.abs(decimal);
+
+        for (int i = 0; i < address.length; i++) {
+            int currValue = (int)Math.pow(2, power);
+            power--; // update power for next time around
+
+            if (dec - currValue >= 0) {
+                address[i] = 1;
+                dec -= currValue;
+            }
+
+            else
+                address[i] = 0;
+        }
+
+        return address;
     }
 }

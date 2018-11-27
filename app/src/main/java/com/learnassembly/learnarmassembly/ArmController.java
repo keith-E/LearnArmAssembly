@@ -68,4 +68,32 @@ public class ArmController {
         // store result in destination register
         this.register.setRegister(rd, result);
     }
+
+    /*
+        Basic sub operation.
+     */
+
+
+    /*
+        Basic store operation. Uses whatever memory
+        address the stack pointer is currently pointing
+        to.
+     */
+    public void str(int rs) {
+        int[] valToBeStored = this.register.getRegister(rs);
+        int[] memAddress = this.sp.getSP();
+
+        this.mem.setMemory(memAddress, valToBeStored);
+    }
+
+    /*
+        Basic load operation. Uses whatever memory address the
+        stack pointer is currently pointing to.
+     */
+    public void ldr(int rd) {
+        int[] memAddress = this.sp.getSP();
+        int[] val = this.mem.getMemory(memAddress);
+
+        this.register.setRegister(rd, val);
+    }
 }
