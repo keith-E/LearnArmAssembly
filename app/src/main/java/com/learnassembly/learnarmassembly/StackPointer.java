@@ -14,6 +14,14 @@ public class StackPointer {
     }
 
     /*
+        Initializes a stack pointer given no start value.
+     */
+    public StackPointer() {
+        int[] zero = new int[32];
+        this.sp = zero;
+    }
+
+    /*
         Sets the stack pointer to point to the updated
         address.
      */
