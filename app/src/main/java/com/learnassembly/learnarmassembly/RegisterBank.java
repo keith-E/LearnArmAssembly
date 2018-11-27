@@ -11,7 +11,7 @@ public class RegisterBank {
         Initializes RegisterBank to contain all 0s to start.
      */
     public RegisterBank() {
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 16; i++) {
             int[] empty = new int[32];
             rb.add(empty);
         }
@@ -21,7 +21,7 @@ public class RegisterBank {
         Retrieve binary number at given register number.
      */
     public int[] getRegister(int register) {
-        if (register >= 0 || register < 32) {
+        if (register >= 0 || register < 16) {
             return this.rb.get(register);
         }
 
@@ -35,7 +35,7 @@ public class RegisterBank {
         Set binary number at given register number.
      */
     public void setRegister(int register, int[] num) {
-        if (register >=0 || register < 32) {
+        if (register >=0 || register < 16) {
             this.rb.set(register, num);
         }
 
