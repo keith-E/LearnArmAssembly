@@ -1,4 +1,5 @@
 package com.learnassembly.learnarmassembly;
+import java.util.ArrayList;
 
 /*
     Represents an ArmController.
@@ -81,7 +82,7 @@ public class ArmController {
      */
     public void str(int rs) {
         int[] valToBeStored = this.register.getRegister(rs);
-        int[] memAddress = this.sp.getSP();
+        ArrayList<Integer> memAddress = convert(this.sp.getSP());
 
         this.mem.setMemory(memAddress, valToBeStored);
     }
@@ -91,9 +92,19 @@ public class ArmController {
         stack pointer is currently pointing to.
      */
     public void ldr(int rd) {
-        int[] memAddress = this.sp.getSP();
+        ArrayList<Integer> memAddress = convert(this.sp.getSP());
         int[] val = this.mem.getMemory(memAddress);
 
         this.register.setRegister(rd, val);
+    }
+
+    private ArrayList<Integer> convert(int[] sp) {
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < sp.length; i++) {
+            result.add(sp[i]);
+        }
+
+        return result;
     }
 }
