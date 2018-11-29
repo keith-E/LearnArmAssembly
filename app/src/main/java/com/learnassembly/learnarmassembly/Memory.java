@@ -1,22 +1,21 @@
 package com.learnassembly.learnarmassembly;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /*
     Represents the available memory.
  */
 public class Memory {
-    private HashMap<int[], int[]> memory = new HashMap<int[], int[]>();
+    private HashMap<ArrayList<Integer>, int[]> memory = new HashMap<>();
 
     /*
         Initializes the memory with the memory
         addresses.
      */
     public Memory() {
-        // initialization is off here, need to recheck, not setting
-        // up properly
         for (int i = 0; i < 128; i+=8) {
-            int[] address = createAddress(i);
-            int[] zeros = new int[32];  // default to zero if nothing stored
+            ArrayList<Integer> address = createAddress(i);
+            int[] zeros = new int[32];
             memory.put(address, zeros);
         }
     }
@@ -24,7 +23,7 @@ public class Memory {
     /*
         Sets the given memory address to the given value.
      */
-    public void setMemory(int[] address, int[] value) {
+    public void setMemory(ArrayList<Integer> address, int[] value) {
         if (memory.containsKey(address))
             memory.put(address, value);
 
@@ -36,7 +35,7 @@ public class Memory {
         Retrieves the binary number stored in the
         given memory address.
      */
-    public int[] getMemory(int[] address) {
+    public int[] getMemory(ArrayList<Integer> address) {
         if (memory.get(address) != null)
             return memory.get(address);
 
@@ -50,22 +49,22 @@ public class Memory {
     /*
         Create 32-bit memory address in binary.
      */
-    private int[] createAddress(int decimal) {
-        int[] address = new int[32];
-        int power = address.length - 1;
+    private ArrayList<Integer> createAddress(int decimal) {
+        ArrayList<Integer> address = new ArrayList<>();
+        int power = 31;
         int dec = Math.abs(decimal);
 
-        for (int i = 0; i < address.length; i++) {
+        for (int i = 0; i < 32; i++) {
             int currValue = (int)Math.pow(2, power);
             power--; // update power for next time around
 
             if (dec - currValue >= 0) {
-                address[i] = 1;
+                address.add(i, 1);
                 dec -= currValue;
             }
 
             else
-                address[i] = 0;
+                address.add(i, 0);
         }
 
         return address;
