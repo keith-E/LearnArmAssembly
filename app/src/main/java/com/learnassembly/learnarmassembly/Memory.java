@@ -13,7 +13,7 @@ public class Memory {
         addresses.
      */
     public Memory() {
-        for (int i = 0; i < 128; i+=8) {
+        for (int i = 0; i < 4096; i+=32) {
             ArrayList<Integer> address = createAddress(i);
             int[] zeros = new int[32];
             memory.put(address, zeros);
