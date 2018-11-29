@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -59,16 +58,18 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(context, branchName, duration);
 
-//                while(branchNameEditText.getText().toString().isEmpty()) {
-//                    toast.show();
-//                    try {
-//                        Thread.sleep(2000);
-//                    } catch(InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
                 String branchNameInput = branchNameEditText.getText().toString();
-//                beginningButtonLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        final Button commitBranchButton = (Button) findViewById(R.id.commitBranchButton);
+        commitBranchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder branchCommitSb = new StringBuilder();
+                branchCommitSb.append("b ");
+                branchCommitSb.append("test");
+                String branchCommit = "hi";
             }
         });
     }
