@@ -98,6 +98,10 @@ public class ArmController {
         this.register.setRegister(rd, val);
     }
 
+    /*
+        Helper method for use in converting StackPointer to an
+        ArrayList for compatibility with Memory class.
+     */
     private ArrayList<Integer> convert(int[] sp) {
         ArrayList<Integer> result = new ArrayList<>();
 
