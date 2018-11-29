@@ -130,6 +130,31 @@ public class ArmController {
     }
 
     /*
+        Pre-Index ldr operation. Can be either modified or not modified.
+     */
+    public void ldrPre(int rd, int[] increment, boolean modified) {
+        if (modified) {
+            this.sp.setSP(increment);   // update stack pointer
+            ArrayList<Integer> memAddress = convert(this.sp.getSP());
+            int[] valToBeLoaded = this.mem.getMemory(memAddress);
+            this.register.setRegister(rd, valToBeLoaded);
+        }
+
+        else {
+            int[] oldSP = this.sp.getSP();
+            this.sp.setSP(increment); // determine new address first
+            ArrayList<Integer> memAddress = convert(this.sp.getSP());
+            int[] valToBeLoaded = this.mem.getMemory(memAddress);
+            this.register.setRegister(rd, valToBeLoaded);
+            this.sp.resetSP(oldSP); // leave stack pointer unmodified
+        }
+    }
+
+    /*
+
+     */
+
+    /*
         Helper method for use in converting StackPointer to an
         ArrayList for compatibility with Memory class.
      */
