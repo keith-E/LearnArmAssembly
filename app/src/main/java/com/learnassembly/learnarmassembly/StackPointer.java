@@ -30,6 +30,13 @@ public class StackPointer {
     }
 
     /*
+        Resets stack pointer.
+     */
+    public void resetSP(int[] oldValue) {
+        this.sp = oldValue;
+    }
+
+    /*
         Returns the current stack pointer address.
      */
     public int[] getSP() {

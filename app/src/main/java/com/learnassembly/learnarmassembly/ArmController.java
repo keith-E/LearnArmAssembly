@@ -88,6 +88,37 @@ public class ArmController {
     }
 
     /*
+        Pre-Index str operation. Either modified or not modified.
+     */
+    public void strPre(int rs, int[] increment, boolean modified) {
+        int[] valToBeStored = this.register.getRegister(rs);
+
+        if (modified) {
+            this.sp.setSP(increment);   // increment stack pointer first
+            ArrayList<Integer> memAddress = convert(this.sp.getSP());
+            this.mem.setMemory(memAddress, valToBeStored);
+        }
+
+        else {
+            int[] oldSPAddress = this.sp.getSP();
+            this.sp.setSP(increment);   // determine memory address location first
+            ArrayList<Integer> memAddress = convert(this.sp.getSP());
+            this.mem.setMemory(memAddress, valToBeStored);
+            this.sp.resetSP(oldSPAddress);  // leave stack pointer unchanged
+        }
+    }
+
+    /*
+        Post-Index str operation.
+     */
+    public void strPost(int rs, int[] increment) {
+        int[] valToBeStored = this.register.getRegister(rs);
+        ArrayList<Integer> memAddress = convert(this.sp.getSP());
+        this.mem.setMemory(memAddress, valToBeStored);
+        this.sp.setSP(increment);   // update the stack pointer
+    }
+
+    /*
         Basic load operation. Uses whatever memory address the
         stack pointer is currently pointing to.
      */
