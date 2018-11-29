@@ -151,8 +151,14 @@ public class ArmController {
     }
 
     /*
-
+        Post-Index ldr operation.
      */
+    public void ldrPost(int rd, int[] increment) {
+        ArrayList<Integer> memAddress = convert(this.sp.getSP());
+        int[] valToBeLoaded = this.mem.getMemory(memAddress);
+        this.register.setRegister(rd, valToBeLoaded);
+        this.sp.setSP(increment);   // update stack pointer
+    }
 
     /*
         Helper method for use in converting StackPointer to an
