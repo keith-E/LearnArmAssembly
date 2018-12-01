@@ -89,7 +89,7 @@ public class ArmController {
                 result[i] = 0;
             } else if (rs1Binary[i] == 0 && rs2Binary[i] == 1) {
                 result[i] = 1;
-                index = --i; // start looking at next digit
+                index = i - 1; // start looking at next digit
 
                 // find next place can borrow from
                 while (index >= 0) {
