@@ -73,6 +73,40 @@ public class ArmController {
     /*
         Basic sub operation.
      */
+    public void sub(int rd, int rs1, int rs2) {
+        int[] rs1Binary = this.register.getRegister(rs1);
+        int[] rs2Binary = this.register.getRegister(rs2);
+        int[] result = new int[32];
+
+        int index = 0 ; // helper index
+
+        for (int i = rs1Binary.length - 1; i >= 0; i--) {
+            if (rs1Binary[i] == 1 && rs2Binary[i] == 0) {
+                result[i] = 1;
+            } else if (rs1Binary[i] == 1 && rs2Binary[i] == 1) {
+                result[i] = 0;
+            } else if (rs1Binary[i] == 0 && rs2Binary[i] == 0) {
+                result[i] = 0;
+            } else if (rs1Binary[i] == 0 && rs2Binary[i] == 1) {
+                result[i] = 1;
+                index = --i; // start looking at next digit
+
+                // find next place can borrow from
+                while (index >= 0) {
+                    if (rs1Binary[index] == 0) {
+                        rs1Binary[index] = 1;
+                        index--;
+                    } else if (rs1Binary[index] == 1) {
+                        rs1Binary[index] = 0;
+                        index = 0;  // reset index for later use
+                        break;
+                    }
+                }
+            }
+        }
+
+        this.register.setRegister(rd, result);
+    }
 
 
     /*
