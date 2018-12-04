@@ -2,7 +2,6 @@ package com.learnassembly.learnarmassembly;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         branchNameList = new ArrayList<>();
 
         branchButtonLogic();
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void branchButtonLogic() {
         final LinearLayout beginningButtonLayout = (LinearLayout) findViewById(R.id.begButtonLayout);
-        final LinearLayout labelButtonLayout = (LinearLayout) findViewById(R.id.labelButtonLayout);
 
         Button clickLabelButton = (Button) findViewById(R.id.labelButton);
         clickLabelButton.setOnClickListener(new View.OnClickListener() {
