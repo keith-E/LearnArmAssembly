@@ -20,4 +20,5 @@
     <string name="zeroBit">0</string>
     <string name="oneBit">1</string>
     <string name="csprDescriptionLabel">CSPR Status Bits (NZCV)</string>
+    <string name="title_activity_operation_name">activity_operation_name</string>
 </resources>

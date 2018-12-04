@@ -24,13 +24,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.learnassembly.learnarmassembly.MainActivity" />
         </activity>
-        <activity android:name=".BranchNameActivity"
+        <activity
+            android:name=".BranchNameActivity"
             android:label="Branch Name"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.learnassembly.learnarmassembly.MainActivity" />
         </activity>
+        <activity android:name=".OperationNameActivity"></activity>
     </application>
 
 </manifest>
