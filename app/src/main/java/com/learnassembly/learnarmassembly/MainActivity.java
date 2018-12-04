@@ -7,33 +7,61 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    List<String> branchNameList;
     public static final int TEXT_REQUEST = 1;
     public static final int BRANCH_NAME_PICK_REQUEST = 2;
+
+    LinearLayout beginningButtonLayout;
+
+    List<String> branchNameList;
+    Map<Integer, String> editorContentsMap;
+    int editorFocus;
+    String labelName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        beginningButtonLayout = (LinearLayout) findViewById(R.id.begButtonLayout);
+
         branchNameList = new ArrayList<>();
+        editorContentsMap = new HashMap<>();
+        editorFocus = 0;
+        labelName = "";
+
+        for(int i = 1; i <= 10; i++) {
+            editorContentsMap.put(i, "");
+        }
+        editorContentsLogic();
 
         branchButtonLogic();
     }
 
-    private void branchButtonLogic() {
-        final LinearLayout beginningButtonLayout = (LinearLayout) findViewById(R.id.begButtonLayout);
+    private void editorContentsLogic() {
+        TextView line1Content = (TextView) findViewById(R.id.line1Content);
+        line1Content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                beginningButtonLayout.setVisibility(View.VISIBLE);
+                editorFocus = 1;
+                // TODO: set editor textview with contents based on button mashing and activity
+            }
+        });
 
+    }
+
+    private void branchButtonLogic() {
         Button clickLabelButton = (Button) findViewById(R.id.labelButton);
         clickLabelButton.setOnClickListener(new View.OnClickListener() {
             @Override
