@@ -7,37 +7,6 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <LinearLayout
-        android:id="@+id/editBranchNameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registryBank">
-
-        <EditText
-            android:id="@+id/branchNameText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Enter Branch Name Here"
-            android:textAlignment="center" />
-
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/commitBranchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="COMMIT" />
-
-    </LinearLayout>
-
     <ScrollView
         android:id="@+id/registryBank"
         android:layout_width="0dp"
@@ -662,33 +631,22 @@
             android:id="@+id/labelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1
-"
+            android:layout_weight="1"
             android:text="LABEL" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/branchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1
-"
-            android:text="MOV" />
+            android:layout_weight="1"
+            android:text="BRANCH" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/operationsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1
-"
-            android:text="STR" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1
-"
-            android:text="LDR" />
+            android:layout_weight="1"
+            android:text="OPERATIONS" />
     </LinearLayout>
 
     <LinearLayout
@@ -704,13 +662,6 @@
         app:layout_constraintTop_toBottomOf="@+id/registryBank">
 
         <Button
-            android:id="@+id/branchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="BRANCH" />
-
-        <Button
             android:id="@+id/labelNameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -719,191 +670,5 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/branchButtonLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registryBank">
-
-        <Button
-            android:id="@+id/branchNameButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="BRANCH NAME" />
-
-    </LinearLayout>
-
-    <TableLayout
-        android:id="@+id/keyboardLayout"
-        android:visibility="invisible"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registryBank">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Q" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="W" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="E" />
-
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="R" />
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="T" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Y" />
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="U" />
-
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="I" />
-
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="O" />
-
-            <Button
-                android:id="@+id/button13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="P" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <Button
-                android:id="@+id/aKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="A" />
-
-            <Button
-                android:id="@+id/sKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="S" />
-
-            <Button
-                android:id="@+id/dKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="D" />
-
-            <Button
-                android:id="@+id/fKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="F" />
-
-            <Button
-                android:id="@+id/gKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="G" />
-
-            <Button
-                android:id="@+id/hKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="H" />
-
-            <Button
-                android:id="@+id/jKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="J" />
-
-            <Button
-                android:id="@+id/kKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="K" />
-
-            <Button
-                android:id="@+id/lKeyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="L" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
