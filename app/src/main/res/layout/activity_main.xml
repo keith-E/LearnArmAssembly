@@ -519,14 +519,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line1EditorTest"
-                    android:layout_width="20dp"
+                    android:id="@+id/line_1_label"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line1Content"
+                    android:id="@+id/line_1_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -534,53 +534,220 @@
                     android:background="#dfdddd"
                     android:text=""
                     android:textSize="24sp" />
+
             </LinearLayout>
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/line_2_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="24sp" />
 
-
-                <TableRow
-                    android:id="@+id/line2Row"
+                <TextView
+                    android:id="@+id/line_2_content"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
 
-                    <TextView
-                        android:id="@+id/line2Editor"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textSize="16dp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/line2Label"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/line2Command"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/line_3_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textSize="24sp" />
 
-                    <TextView
-                        android:id="@+id/line2Arg1"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/line_3_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:background="#dfdddd"
+                    android:text=""
+                    android:textSize="24sp" />
 
-                    <TextView
-                        android:id="@+id/line2Arg2"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/line2Arg3"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                </TableRow>
-            </TableLayout>
+                <TextView
+                    android:id="@+id/line_4_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_4_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_5_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_5_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:background="#dfdddd"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_6_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="6"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_6_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_7_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="7"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_7_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:background="#dfdddd"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_8_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_8_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_9_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="9"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_9_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:background="#dfdddd"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/line_10_label"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/line_10_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

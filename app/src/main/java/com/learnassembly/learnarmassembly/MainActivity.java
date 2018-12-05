@@ -21,12 +21,16 @@ public class MainActivity extends AppCompatActivity {
     public static final int TEXT_REQUEST = 1;
     public static final int BRANCH_NAME_PICK_REQUEST = 2;
 
+    public static final String TAB = "     ";
+    public static final String LABEL_COLON = ":";
+
     LinearLayout beginningButtonLayout;
+    TextView editorLineOneContent;
+    TextView editorLineTwoContent;
 
     List<String> branchNameList;
     Map<Integer, String> editorContentsMap;
     int editorFocus;
-    String labelName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,34 +38,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         beginningButtonLayout = (LinearLayout) findViewById(R.id.begButtonLayout);
+        editorLineOneContent = (TextView) findViewById(R.id.line_1_content);
+        editorLineTwoContent = (TextView) findViewById(R.id.line_2_content);
 
         branchNameList = new ArrayList<>();
         editorContentsMap = new HashMap<>();
         editorFocus = 0;
-        labelName = "";
 
         for(int i = 1; i <= 10; i++) {
             editorContentsMap.put(i, "");
         }
         editorContentsLogic();
 
-        branchButtonLogic();
+        labelAndBranchButtonLogic();
     }
 
     private void editorContentsLogic() {
-        TextView line1Content = (TextView) findViewById(R.id.line1Content);
-        line1Content.setOnClickListener(new View.OnClickListener() {
+        editorLineOneContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 beginningButtonLayout.setVisibility(View.VISIBLE);
                 editorFocus = 1;
-                // TODO: set editor textview with contents based on button mashing and activity
             }
         });
-
+        editorLineTwoContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                beginningButtonLayout.setVisibility(View.VISIBLE);
+                editorFocus = 2;
+            }
+        });
     }
 
-    private void branchButtonLogic() {
+    private void labelAndBranchButtonLogic() {
         Button clickLabelButton = (Button) findViewById(R.id.labelButton);
         clickLabelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 launchLabelNameActivity(v);
             }
         });
-
         Button clickBranchButton = (Button) findViewById(R.id.branchButton);
         clickBranchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 launchBranchNameActivity(v);
             }
         });
-
-
     }
 
     private void launchLabelNameActivity(View view) {
@@ -86,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("LIST_TO_SEND", (Serializable) branchNameList);
         startActivityForResult(intent, TEXT_REQUEST);
 
+    }
+
+    private void launchBranchNameActivity(View view) {
+        Intent intent = new Intent(this, BranchNameActivity.class);
+        intent.putExtra("LABEL_NAMES_TO_SEND", (Serializable) branchNameList);
+        startActivityForResult(intent, BRANCH_NAME_PICK_REQUEST);
     }
 
     @Override
@@ -97,28 +109,39 @@ public class MainActivity extends AppCompatActivity {
                 String labelName = data.getStringExtra(LabelNameActivity.LABEL_NAME);
 
                 branchNameList.add(labelName);
-
-                Context context = getApplicationContext();
+                setLabelInEditor(labelName);
+                beginningButtonLayout.setVisibility(View.INVISIBLE);
+               /* Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
                 for(String name : branchNameList) {
                     Toast toast = Toast.makeText(context, name, duration);
                     toast.show();
-                }
+                }*/
             }
         } else if(requestCode == BRANCH_NAME_PICK_REQUEST) {
             if(resultCode == RESULT_OK) {
                 String branchName = data.getStringExtra(BranchNameActivity.BRANCH_NAME);
-                Context context = getApplicationContext();
+                setBranchInEditor(branchName);
+                beginningButtonLayout.setVisibility(View.INVISIBLE);
+                /*Context context = getApplicationContext();
                 int duration = Toast.LENGTH_LONG;
                 Toast toast = Toast.makeText(context, branchName, duration);
-                toast.show();
+                toast.show();*/
             }
         }
     }
 
-    private void launchBranchNameActivity(View view) {
-        Intent intent = new Intent(this, BranchNameActivity.class);
-        intent.putExtra("LABEL_NAMES_TO_SEND", (Serializable) branchNameList);
-        startActivityForResult(intent, BRANCH_NAME_PICK_REQUEST);
+    private void setLabelInEditor(String labelName) {
+        String labelText = labelName + LABEL_COLON;
+        if(editorFocus == 1) {
+            editorLineOneContent.setText(labelText);
+        }
+    }
+
+    private void setBranchInEditor(String branchName) {
+        String branchText = TAB + TAB + TAB + "b " + branchName;
+        if(editorFocus == 2) {
+            editorLineTwoContent.setText(branchText);
+        }
     }
 }
