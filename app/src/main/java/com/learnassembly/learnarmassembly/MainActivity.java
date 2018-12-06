@@ -1,7 +1,6 @@
 package com.learnassembly.learnarmassembly;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -272,138 +271,140 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLabelTextInEditor(String labelName) {
-        String labelText = "<font color='blue'>" + labelName + "</font>" + LABEL_COLON;
-        setEditorLineTextBasedOnFocus(labelText);
-//        setEditorlLineTextColorBasedOnFocus("LABEL");
+        String labelTextForView = "<font color='blue'>" + labelName + "</font>" + LABEL_COLON;
+        String labelTextForCodeMap = "b " + labelName;
+        setEditorLineBasedOnFocus(labelTextForView, labelTextForCodeMap);
+        // TODO: Possibly create code objects for HashMap -- ie interface (...implements Code)
     }
 
     private void setBranchTextInEditor(String branchName) {
-        String branchText = TAB + TAB + TAB + "<font color='red'>b</font> <font color='blue'>"
-                            + branchName + "</font>";
-        setEditorLineTextBasedOnFocus(branchText);
-//        setEditorlLineTextColorBasedOnFocus("BRANCH");
+        String branchTextForView = TAB + TAB + TAB + "<font color='red'>b</font> <font color='blue'>"
+                                   + branchName + "</font>";
+        String branchTextForCodeMap = "b " + branchName;
+        setEditorLineBasedOnFocus(branchTextForView, branchTextForCodeMap);
     }
 
-    private void setEditorLineTextBasedOnFocus(String textToSet) {
+    private void setEditorLineBasedOnFocus(String textToSetInView, String textToSetInMap) {
         switch (editorFocus) {
             case 1:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineOneContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineOneContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                                                   TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineOneContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineOneContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
+                editorContentsMap.put(1, textToSetInMap);
                 break;
             case 2:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineTwoContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineTwoContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineTwoContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineTwoContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 3:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineThreeContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineThreeContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineThreeContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineThreeContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 4:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFourContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineFourContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineFourContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineFourContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 5:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFiveContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineFiveContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineFiveContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineFiveContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 6:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineSixContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineSixContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineSixContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineSixContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 7:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineSevenContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineSevenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineSevenContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineSevenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 8:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineEightContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineEightContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineEightContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineEightContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 9:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineNineContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineNineContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineNineContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineNineContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 10:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineTenContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineTenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineTenContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineTenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 11:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineElevenContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineElevenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineElevenContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineElevenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 12:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineTwelveContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineTwelveContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineTwelveContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineTwelveContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 13:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineThirteenContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineThirteenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineThirteenContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineThirteenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 14:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFourteenContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineFourteenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineFourteenContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineFourteenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
             case 15:
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFifteenContent.setText(Html.fromHtml(textToSet,  Html.FROM_HTML_MODE_LEGACY),
+                    mEditorLineFifteenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
                             TextView.BufferType.SPANNABLE);
                 } else {
-                    mEditorLineFifteenContent.setText(Html.fromHtml(textToSet), TextView.BufferType.SPANNABLE);
+                    mEditorLineFifteenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
                 }
                 break;
         }
