@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mEditorLineFifteenContent;
     private Button mBranchButton;
     private Button mLabelButton;
+    private Button mOperationsButton;
 
     List<String> branchNameList;
     Map<Integer, String> editorContentsMap;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeButtons() {
         mBranchButton = (Button) findViewById(R.id.button_main_branch);
         mLabelButton = (Button) findViewById(R.id.button_main_label);
+        mOperationsButton = (Button) findViewById(R.id.operationsButton);
     }
 
     private void initializeEditorLines() {
@@ -224,6 +226,12 @@ public class MainActivity extends AppCompatActivity {
                 launchBranchNameActivity(v);
             }
         });
+        mOperationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchOperationNameActivity(v);
+            }
+        });
     }
 
     private void launchLabelNameActivity(View view) {
@@ -237,6 +245,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BranchNameActivity.class);
         intent.putExtra("LABEL_NAMES_TO_SEND", (Serializable) branchNameList);
         startActivityForResult(intent, BRANCH_NAME_PICK_REQUEST);
+    }
+
+    private void launchOperationNameActivity(View view) {
+        Intent intent = new Intent(this, OperationNameActivity.class);
+        startActivity(intent);
     }
 
     @Override
