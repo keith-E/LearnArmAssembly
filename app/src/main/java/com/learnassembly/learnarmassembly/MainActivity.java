@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int TEXT_REQUEST = 1;
+    public static final int LABEL_NAME_REQUEST = 1;
     public static final int BRANCH_NAME_PICK_REQUEST = 2;
 
     public static final String TAB = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private Button mLabelButton;
     private Button mOperationsButton;
 
-    List<String> branchNameList;
+    List<String> mBranchNameList;
     Map<Integer, String> editorContentsMap;
+    Map<Integer, ArmCode> codeMap;
     int editorFocus;
 
     @Override
@@ -57,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
         initializeButtons();
         initializeEditorLines();
         // Initialize logic elements
-        branchNameList = new ArrayList<>();
+        mBranchNameList = new ArrayList<>();
         editorContentsMap = new HashMap<>();
+        codeMap = new HashMap<>();
         editorFocus = 0;
         for(int i = 1; i <= 15; i++) {
             editorContentsMap.put(i, "");
@@ -205,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showMainButtonLayout() {
-        if(branchNameList.isEmpty()) {
+        if(mBranchNameList.isEmpty()) {
             mBranchButton.setVisibility(View.GONE);
         } else {
             mBranchButton.setVisibility(View.VISIBLE);
@@ -236,14 +238,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchLabelNameActivity(View view) {
         Intent intent = new Intent(this, LabelNameActivity.class);
-        intent.putExtra("LIST_TO_SEND", (Serializable) branchNameList);
-        startActivityForResult(intent, TEXT_REQUEST);
+        intent.putExtra("LIST_TO_SEND", (Serializable) mBranchNameList);
+        startActivityForResult(intent, LABEL_NAME_REQUEST);
 
     }
 
     private void launchBranchNameActivity(View view) {
         Intent intent = new Intent(this, BranchNameActivity.class);
-        intent.putExtra("LABEL_NAMES_TO_SEND", (Serializable) branchNameList);
+        intent.putExtra("LABEL_NAMES_TO_SEND", (Serializable) mBranchNameList);
         startActivityForResult(intent, BRANCH_NAME_PICK_REQUEST);
     }
 
@@ -256,16 +258,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == TEXT_REQUEST) {
+        if(requestCode == LABEL_NAME_REQUEST) {
             if(resultCode == RESULT_OK) {
                 String labelName = data.getStringExtra(LabelNameActivity.LABEL_NAME);
-
-                branchNameList.add(labelName);
+                Label labelCode = new Label(editorFocus, labelName);
+                mBranchNameList.add(labelName);
+                codeMap.put(editorFocus, labelCode);
                 setLabelTextInEditor(labelName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
                /* Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
-                for(String name : branchNameList) {
+                for(String name : mBranchNameList) {
                     Toast toast = Toast.makeText(context, name, duration);
                     toast.show();
                 }*/
@@ -273,6 +276,8 @@ public class MainActivity extends AppCompatActivity {
         } else if(requestCode == BRANCH_NAME_PICK_REQUEST) {
             if(resultCode == RESULT_OK) {
                 String branchName = data.getStringExtra(BranchNameActivity.BRANCH_NAME);
+                Branch branchCode = new Branch(editorFocus, branchName);
+                codeMap.put(editorFocus, branchCode);
                 setBranchTextInEditor(branchName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
                 /*Context context = getApplicationContext();

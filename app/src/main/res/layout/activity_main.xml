@@ -454,7 +454,7 @@
     </TableLayout>
 
     <TableLayout
-        android:id="@+id/runButtonLayout"
+        android:id="@+id/tablelayout_main_execute_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -466,25 +466,19 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/playButton"
+                android:id="@+id/button_main_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PLAY" />
 
             <Button
-                android:id="@+id/stepButton"
+                android:id="@+id/button_main_step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="STEP" />
 
             <Button
-                android:id="@+id/pauseButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PAUSE" />
-
-            <Button
-                android:id="@+id/stopButton"
+                android:id="@+id/buttton_main_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="STOP" />
