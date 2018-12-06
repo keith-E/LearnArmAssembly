@@ -32,7 +32,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.learnassembly.learnarmassembly.MainActivity" />
         </activity>
-        <activity android:name=".OperationNameActivity"></activity>
+        <activity
+            android:name=".OperationNameActivity"
+            android:label="@string/operation_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.learnassembly.learnarmassembly.MainActivity" />
+        </activity>
     </application>
-
 </manifest>

@@ -50,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        Button clickOperationButton = (Button) findViewById(R.id.operationsButton);
+        clickOperationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchOperationNameActivity(v);
+            }
+        });
     }
 
     private void launchLabelNameActivity(View view) {
@@ -60,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void operationButtonLogic() {
-
+    private void launchOperationNameActivity(View view) {
+        Intent intent = new Intent(this, OperationNameActivity.class);
+        startActivity(intent);
     }
 
     @Override
