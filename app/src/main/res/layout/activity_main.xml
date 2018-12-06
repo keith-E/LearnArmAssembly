@@ -508,7 +508,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:id="@+id/baseEditorLinearLayout"
+            android:id="@+id/linearlayout_main_editor_base"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -519,19 +519,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_1_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_one_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_1_content"
+                    android:id="@+id/textview_main_editor_line_one_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="false"
                     android:background="#dfdddd"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:text=""
                     android:textSize="24sp" />
 
@@ -543,16 +545,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_2_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_two_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="2"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_2_content"
+                    android:id="@+id/textview_main_editor_line_two_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:text=""
@@ -566,16 +570,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_3_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_three_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="3"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_3_content"
+                    android:id="@+id/textview_main_editor_line_three_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:background="#dfdddd"
@@ -590,16 +596,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_4_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_four_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="4"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_4_content"
+                    android:id="@+id/textview_main_editor_line_four_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:text=""
@@ -613,16 +621,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_5_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_five_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="5"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_5_content"
+                    android:id="@+id/textview_main_editor_line_five_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:background="#dfdddd"
@@ -637,16 +647,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_6_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_six_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="6"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_6_content"
+                    android:id="@+id/textview_main_editor_line_six_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:text=""
@@ -660,16 +672,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_7_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_seven_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="7"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_7_content"
+                    android:id="@+id/textview_main_editor_line_seven_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:background="#dfdddd"
@@ -684,16 +698,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_8_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_eight_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="8"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_8_content"
+                    android:id="@+id/textview_main_editor_line_eight_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:text=""
@@ -707,16 +723,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_9_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_nine_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="9"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_9_content"
+                    android:id="@+id/textview_main_editor_line_nine_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:background="#dfdddd"
@@ -731,16 +749,146 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/line_10_label"
-                    android:layout_width="30dp"
+                    android:id="@+id/textview_main_editor_line_ten_label"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
                     android:text="10"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/line_10_content"
+                    android:id="@+id/textview_main_editor_line_ten_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_eleven_label"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="11"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_eleven_contents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#dfdddd"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_twelve_label"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_twelve_contents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_thirteen_label"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_thirteen_contents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#dfdddd"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_fourteen_label"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="14"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_fourteen_contents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text=""
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_fifteen_label"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="15"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textview_main_editor_line_fifteen_contents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#dfdddd"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:text=""
@@ -752,7 +900,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/begButtonLayout"
+        android:id="@+id/linearlayout_main_core_buttonlayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -764,14 +912,14 @@
         app:layout_constraintTop_toBottomOf="@+id/registryBank">
 
         <Button
-            android:id="@+id/labelButton"
+            android:id="@+id/button_main_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="LABEL" />
 
         <Button
-            android:id="@+id/branchButton"
+            android:id="@+id/button_main_branch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
