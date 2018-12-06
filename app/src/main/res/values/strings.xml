@@ -22,4 +22,11 @@
     <string name="csprDescriptionLabel">CSPR Status Bits (NZCV)</string>
     <string name="title_activity_operation_name">activity_operation_name</string>
     <string name="operation_name">Operation Name</string>
+    <string-array name="operations">
+        <item>MOV</item>
+        <item>ADD</item>
+        <item>SUB</item>
+        <item>LDR</item>
+        <item>STR</item>
+    </string-array>
 </resources>
