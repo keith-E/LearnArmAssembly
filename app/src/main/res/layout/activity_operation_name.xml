@@ -300,17 +300,17 @@
                 android:text="LDR" />
 
             <EditText
-                android:id="@+id/editText"
-                android:layout_width="50dp"
+                android:id="@+id/editText2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="numberDecimal" />
 
             <EditText
-                android:id="@+id/editText2"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="numberDecimal" />
@@ -326,6 +326,8 @@
                 android:id="@+id/EXE_LDR"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="Execute" />
         </LinearLayout>
