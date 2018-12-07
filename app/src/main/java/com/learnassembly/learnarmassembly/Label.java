@@ -3,18 +3,18 @@ package com.learnassembly.learnarmassembly;
 public class Label implements ArmCode {
 
     private String mLabelName;
+    private int editorPosition;
 
-    public Label(String labelName) {
+    public Label(int position, String labelName) {
         mLabelName = labelName;
+        editorPosition = position;
     }
 
-    @Override
-    public String getCodeType() {
-        return null;
+    public String getLabelName() {
+        return mLabelName;
     }
 
-    @Override
-    public String processLine() {
-        return null;
+    public int returnPosition() {
+        return editorPosition;
     }
 }

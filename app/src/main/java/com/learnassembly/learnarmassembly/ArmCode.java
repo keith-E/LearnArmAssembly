@@ -1,6 +1,7 @@
 package com.learnassembly.learnarmassembly;
 
+import java.util.HashMap;
+
 public interface ArmCode {
-    String getCodeType();
-    String processLine();
+    int returnPosition();
 }
