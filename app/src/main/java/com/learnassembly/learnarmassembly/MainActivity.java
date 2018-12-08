@@ -1,7 +1,11 @@
 package com.learnassembly.learnarmassembly;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,10 +47,13 @@ public class MainActivity extends AppCompatActivity {
     private Button mBranchButton;
     private Button mLabelButton;
     private Button mOperationsButton;
+    private Button mPlayButton;
+    private Button mStepButton;
+    private Button mStopButton;
 
     List<String> mBranchNameList;
     Map<Integer, String> editorContentsMap;
-    Map<Integer, ArmCode> codeMap;
+    Map<Integer, ArmCode> mCodeMap;
     int editorFocus;
 
     @Override
@@ -60,14 +67,15 @@ public class MainActivity extends AppCompatActivity {
         // Initialize logic elements
         mBranchNameList = new ArrayList<>();
         editorContentsMap = new HashMap<>();
-        codeMap = new HashMap<>();
+        mCodeMap = new HashMap<>();
         editorFocus = 0;
         for(int i = 1; i <= 15; i++) {
             editorContentsMap.put(i, "");
         }
         // Handle UI/UX events
         editorContentsClicked();
-        coreBranchButtonClicked();
+        coreButtonClicked();
+        executeButtonClicked();
     }
 
     private void initializeLayouts() {
@@ -78,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         mBranchButton = (Button) findViewById(R.id.button_main_branch);
         mLabelButton = (Button) findViewById(R.id.button_main_label);
         mOperationsButton = (Button) findViewById(R.id.operationsButton);
+        mPlayButton = (Button) findViewById(R.id.button_main_play);
+        mStepButton = (Button) findViewById(R.id.button_main_step);
+        mStopButton = (Button) findViewById(R.id.button_main_stop);
     }
 
     private void initializeEditorLines() {
@@ -215,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         mCoreButtonLinearLayout.setVisibility(View.VISIBLE);
     }
 
-    private void coreBranchButtonClicked() {
+    private void coreButtonClicked() {
         mLabelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,6 +243,62 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 launchOperationNameActivity(v);
+            }
+        });
+    }
+
+    private void executeButtonClicked() {
+        mPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getApplicationContext();
+//                ExecuteArmCode executeArmCode = new ExecuteArmCode(context, mCodeMap);
+//                executeArmCode.playCode();
+                int mPosition = 1;
+                Handler mHandler = new Handler();
+                while(mPosition <= 15) {
+                    final int runnableInt = mPosition;
+                    if(mCodeMap.containsKey(mPosition)) {
+    //                    ArmCode lineOfCode = mCodeMap.get(mPosition);
+                            highlightEditorLine(mPosition);
+    //                        processLine(lineOfCode);
+    //                    try {
+    //                        Thread.sleep(1000);
+    //                    } catch (InterruptedException e) {
+    //                        // do nothing
+    //                    }
+                        Thread thread = new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(3000);
+                                } catch (InterruptedException e) {
+                                }
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        deHighlightEditorLine(runnableInt);
+                                    }
+                                });
+                            }
+                        };
+                        thread.start();
+                    }
+                    mPosition++;
+                }
+            }
+        });
+        mStepButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -263,27 +330,17 @@ public class MainActivity extends AppCompatActivity {
                 String labelName = data.getStringExtra(LabelNameActivity.LABEL_NAME);
                 Label labelCode = new Label(editorFocus, labelName);
                 mBranchNameList.add(labelName);
-                codeMap.put(editorFocus, labelCode);
+                mCodeMap.put(editorFocus, labelCode);
                 setLabelTextInEditor(labelName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
-               /* Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                for(String name : mBranchNameList) {
-                    Toast toast = Toast.makeText(context, name, duration);
-                    toast.show();
-                }*/
             }
         } else if(requestCode == BRANCH_NAME_PICK_REQUEST) {
             if(resultCode == RESULT_OK) {
                 String branchName = data.getStringExtra(BranchNameActivity.BRANCH_NAME);
                 Branch branchCode = new Branch(editorFocus, branchName);
-                codeMap.put(editorFocus, branchCode);
+                mCodeMap.put(editorFocus, branchCode);
                 setBranchTextInEditor(branchName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
-                /*Context context = getApplicationContext();
-                int duration = Toast.LENGTH_LONG;
-                Toast toast = Toast.makeText(context, branchName, duration);
-                toast.show();*/
             }
         }
     }
@@ -427,61 +484,135 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    /*private void setEditorlLineTextColorBasedOnFocus(String textType) {
-        int textColor;
-        if(textType.equalsIgnoreCase("LABEL")) {
-            textColor = Color.BLUE;
-        } else if(textType.equalsIgnoreCase("BRANCH")) {
-            textColor = Color.RED;
-        } else {
-            textColor = Color.BLACK;
-        }
-        switch (editorFocus) {
+    private void highlightEditorLine(int mPosition) {
+        TextView editorLine;
+        switch(mPosition) {
             case 1:
-                mEditorLineOneContent.setTextColor(textColor);
+                editorLine =(TextView) findViewById(R.id.textview_main_editor_line_one_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 2:
-                mEditorLineTwoContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_two_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 3:
-                mEditorLineThreeContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_three_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 4:
-                mEditorLineFourContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_four_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 5:
-                mEditorLineFiveContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_five_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 6:
-                mEditorLineSixContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_six_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 7:
-                mEditorLineSevenContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_seven_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 8:
-                mEditorLineEightContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eight_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 9:
-                mEditorLineNineContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_nine_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 10:
-                mEditorLineTenContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_ten_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 11:
-                mEditorLineElevenContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eleven_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 12:
-                mEditorLineTwelveContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_twelve_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 13:
-                mEditorLineThirteenContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_thirteen_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 14:
-                mEditorLineFourteenContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fourteen_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
                 break;
             case 15:
-                mEditorLineFifteenContent.setTextColor(textColor);
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fifteen_contents);
+                editorLine.setBackgroundColor(Color.YELLOW);
+                break;
         }
-    }*/
+    }
+
+    private void deHighlightEditorLine(int mPosition) {
+        TextView editorLine;
+        switch(mPosition) {
+            case 1:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_one_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 2:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_two_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 3:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_three_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 4:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_four_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 5:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_five_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 6:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_six_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 7:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_seven_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 8:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eight_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 9:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_nine_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 10:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_ten_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 11:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eleven_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 12:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_twelve_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 13:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_thirteen_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 14:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fourteen_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+            case 15:
+                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fifteen_contents);
+                editorLine.setBackgroundColor(Color.WHITE);
+                break;
+        }
+    }
 }
