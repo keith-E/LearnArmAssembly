@@ -478,7 +478,7 @@
                 android:text="STEP" />
 
             <Button
-                android:id="@+id/buttton_main_stop"
+                android:id="@+id/button_main_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="STOP" />
