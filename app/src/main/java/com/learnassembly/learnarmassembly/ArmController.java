@@ -19,6 +19,15 @@ public class ArmController {
     }
 
     /*
+        Initializes the ArmController.
+     */
+    public ArmController() {
+        this.register = new RegisterBank();
+        this.mem = new Memory();
+        this.sp = new StackPointer();
+    }
+
+    /*
         Mov operation for two registers.
      */
     public void mov(int rd, int rs) {
@@ -192,6 +201,35 @@ public class ArmController {
         int[] valToBeLoaded = this.mem.getMemory(memAddress);
         this.register.setRegister(rd, valToBeLoaded);
         this.sp.setSP(increment);   // update stack pointer
+    }
+
+    /*
+        Converts decimal to unsigned binary.
+     */
+    public int[] decimalToUnsignedBinary(int value, int bits)
+    {
+        int[] unsignedBinary = new int[bits];
+        int power = bits - 1;   // start at most significant bit
+        int decimal = Math.abs(value);  // ignore sign
+
+        for (int i = 0; i < unsignedBinary.length; i++)
+        {
+            int currValue = (int)Math.pow(2, power);
+            power--;    // update power for next time
+
+            if (decimal - currValue >= 0)
+            {
+                unsignedBinary[i] = 1;
+                decimal -= currValue;
+            }
+
+            else
+            {
+                unsignedBinary[i] = 0;
+            }
+        }
+
+        return unsignedBinary;
     }
 
     /*

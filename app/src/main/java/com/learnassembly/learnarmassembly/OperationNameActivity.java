@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
-public class OperationNameActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class OperationNameActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,33 @@ public class OperationNameActivity extends AppCompatActivity implements AdapterV
                     layout4.setVisibility(View.INVISIBLE);
                     layout5.setVisibility(View.INVISIBLE);
                 }
+            }
+        });
+
+        movExecute();
+    }
+
+    public void movExecute() {
+        Button movExecuteButton = (Button) findViewById(R.id.EXE_MOV);
+
+        movExecuteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioButton radioCons = (RadioButton) findViewById(R.id.MOV_CONS);
+                RadioButton radioReg = (RadioButton) findViewById(R.id.MOV_REG);
+                EditText dest = (EditText) findViewById(R.id.MOV_DEST);
+                EditText src = (EditText) findViewById(R.id.MOV_SRC);
+                int destination = Integer.parseInt(dest.getText().toString());
+                int source = Integer.parseInt(src.getText().toString());
+
+                if (radioCons.isChecked() && !radioReg.isChecked()) {
+                    int[] cons = ac.decimalToUnsignedBinary(source, 32);
+                    ac.mov(destination, cons);
+
+                } else if (radioReg.isChecked() && !radioCons.isChecked()) {
+                    ac.mov(destination, source);
+                }
+
             }
         });
     }

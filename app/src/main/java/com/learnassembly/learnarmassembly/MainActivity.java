@@ -24,6 +24,10 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     public static final int LABEL_NAME_REQUEST = 1;
     public static final int BRANCH_NAME_PICK_REQUEST = 2;
+    public static RegisterBank registerBank = new RegisterBank();
+    public static Memory memory = new Memory();
+    public static StackPointer stackPointer = new StackPointer();
+    public static ArmController ac = new ArmController(registerBank, memory, stackPointer);
 
     public static final String TAB = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
     public static final String LABEL_COLON = ":";
