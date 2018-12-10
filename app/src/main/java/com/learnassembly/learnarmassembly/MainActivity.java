@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Region;
+import android.media.VolumeShaper;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -24,6 +26,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     public static final int LABEL_NAME_REQUEST = 1;
     public static final int BRANCH_NAME_PICK_REQUEST = 2;
+    public static final int OPERATION_REQUEST = 3;
     public static RegisterBank registerBank = new RegisterBank();
     public static Memory memory = new Memory();
     public static StackPointer stackPointer = new StackPointer();
@@ -322,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchOperationNameActivity(View view) {
         Intent intent = new Intent(this, OperationNameActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, OPERATION_REQUEST);
     }
 
     @Override
@@ -346,7 +349,66 @@ public class MainActivity extends AppCompatActivity {
                 setBranchTextInEditor(branchName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
             }
+        } else if(requestCode == OPERATION_REQUEST) {
+            if(resultCode == RESULT_OK) {
+                String dr = data.getStringExtra(OperationNameActivity.OPERATION_RESULT);
+                int regNum = Integer.parseInt(dr);
+
+                setRegisterBankOnDisplay(regNum);
+                mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
+            }
         }
+    }
+
+    private TextView determineRegisterID(int regNum) {
+        TextView registerContent;
+
+        switch (regNum) {
+            case 0:
+                return (TextView) findViewById(R.id.r0Contents);
+            case 1:
+                return (TextView) findViewById(R.id.r1Contents);
+            case 2:
+                return (TextView) findViewById(R.id.r2Contents);
+            case 3:
+                return (TextView) findViewById(R.id.r3Contents);
+            case 4:
+
+                return (TextView) findViewById(R.id.r4Contents);
+            case 5:
+                return (TextView) findViewById(R.id.r5Contents);
+            case 6:
+                return (TextView) findViewById(R.id.r6Contents);
+            case 7:
+                return (TextView) findViewById(R.id.r7Contents);
+            case 8:
+                return (TextView) findViewById(R.id.r8Contents);
+            case 9:
+                return (TextView) findViewById(R.id.r9Contents);
+            case 10:
+                return (TextView) findViewById(R.id.r10Contents);
+            case 11:
+                return (TextView) findViewById(R.id.r11Contents);
+            case 12:
+                return (TextView) findViewById(R.id.r12Contents);
+            case 13:
+                return (TextView) findViewById(R.id.spContents);
+            case 14:
+                return (TextView) findViewById(R.id.lrContents);
+            case 15:
+                return (TextView) findViewById(R.id.pcContents);
+        }
+
+        return (TextView) findViewById(R.id.r0Contents);    // by default
+    }
+
+
+    private void setRegisterBankOnDisplay(int register) {
+        int[] binaryNumber = registerBank.getRegister(register);
+        String binaryString = ViewConversion.binaryToString(binaryNumber);
+
+        TextView registerContents = determineRegisterID(register);
+        registerContents.setText(binaryString);
     }
 
     private void setLabelTextInEditor(String labelName) {

@@ -1,5 +1,6 @@
 package com.learnassembly.learnarmassembly;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class OperationNameActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
+
+    public static final String OPERATION_RESULT = "com.learnassembly.learnarmassembly.OperationNameActivity.OP_RESULT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +125,11 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                     ac.mov(destination, source);
                 }
 
+                Intent movIntent = new Intent();
+                String d = Integer.toString(destination);
+                movIntent.putExtra(OPERATION_RESULT, d);
+                setResult(RESULT_OK, movIntent);
+                finish();
             }
         });
     }
