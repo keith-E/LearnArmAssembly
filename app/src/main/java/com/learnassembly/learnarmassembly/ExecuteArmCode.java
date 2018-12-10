@@ -23,16 +23,13 @@ public class ExecuteArmCode  {
     }
 
     public void playCode() {
-        while(mPosition <= mCodeMap.size()) {
+        int maximumCodeMapSize = 15;
+        mPosition = 1;
+        while(mPosition <= 15) {
             ArmCode lineOfCode = mCodeMap.get(mPosition);
             if(lineOfCode != null) {
-                highlightEditorLine();
+//                highlightEditorLine();
                 processLine(lineOfCode);
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    // do nothing
-//                }
 //                deHighlightEditorLine();
             }
             mPosition++;
@@ -49,8 +46,16 @@ public class ExecuteArmCode  {
 
     private void processLine(ArmCode lineOfCodeToProcess) {
         if(lineOfCodeToProcess instanceof Label) {
-
-
+            // do nothing
+        } else if(lineOfCodeToProcess instanceof Branch) {
+            String labelNameToBranchTo = ((Branch)lineOfCodeToProcess).getmBranchToLabelName();
+            for(Map.Entry<Integer, ArmCode> code : mCodeMap.entrySet()) {
+                if(code instanceof Label) {
+                    if(((Label)code).getLabelName().equalsIgnoreCase(labelNameToBranchTo)) {
+                        mPosition = ((Label)code).returnPosition();
+                    }
+                }
+            }
         }
     }
 
