@@ -93,7 +93,12 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
             }
         });
 
+        // operator listeners
         movExecute();
+        addExecute();
+        subExecute();
+        ldrExecute();
+        strExecute();
     }
 
     public void movExecute() {
@@ -117,6 +122,120 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                     ac.mov(destination, source);
                 }
 
+            }
+        });
+    }
+
+    public void addExecute() {
+        Button addExecuteButton = (Button) findViewById(R.id.EXE_ADD);
+
+        addExecuteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText dest = (EditText) findViewById(R.id.ADD_DEST);
+                EditText op1 = (EditText) findViewById(R.id.ADD_OP1);
+                EditText op2 = (EditText) findViewById(R.id.ADD_OP2);
+                int destination = Integer.parseInt(dest.getText().toString());
+                int operator1 = Integer.parseInt(op1.getText().toString());
+                int operator2 = Integer.parseInt(op2.getText().toString());
+
+                ac.add(destination, operator1, operator2);
+            }
+        });
+    }
+
+    public void subExecute() {
+        Button subExecuteButton = (Button) findViewById(R.id.EXE_SUB);
+
+        subExecuteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText dest = (EditText) findViewById(R.id.SUB_DEST);
+                EditText op1 = (EditText) findViewById(R.id.SUB_OP1);
+                EditText op2 = (EditText) findViewById(R.id.SUB_OP2);
+                int destination = Integer.parseInt(dest.getText().toString());
+                int operator1 = Integer.parseInt(op1.getText().toString());
+                int operator2 = Integer.parseInt(op2.getText().toString());
+
+                ac.sub(destination, operator1, operator2);
+            }
+        });
+    }
+
+    public void ldrExecute() {
+        Button ldrExecuteButton = (Button) findViewById(R.id.EXE_LDR);
+
+        ldrExecuteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioButton radioReg = (RadioButton) findViewById(R.id.LDR_REG);
+                RadioButton radioPreMod = (RadioButton) findViewById(R.id.LDR_PREMOD);
+                RadioButton radioPre = (RadioButton) findViewById(R.id.LDR_PRE);
+                RadioButton radioPost = (RadioButton) findViewById(R.id.LDR_POST);
+                EditText dest = (EditText) findViewById(R.id.LDR_DEST);
+                EditText inc = (EditText) findViewById(R.id.LDR_INCREMENT;
+                int destination = Integer.parseInt(dest.getText().toString());
+                int increment = Integer.parseInt(inc.getText().toString());
+
+                if (radioReg.isChecked() && !radioPreMod.isChecked() &&
+                        !radioPre.isChecked() && !radioPost.isChecked()) {
+                    ac.ldr(destination);
+
+                } else if (radioPreMod.isChecked() && !radioReg.isChecked() &&
+                        !radioPre.isChecked() && !radioPost.isChecked()) {
+                    int[] i = ac.decimalToUnsignedBinary(increment, 32);
+                    ac.ldrPre(destination, i, true);
+
+                } else if (radioPre.isChecked() && !radioPreMod.isChecked() &&
+                        !radioReg.isChecked() && !radioPost.isChecked()) {
+                    int[] i = ac.decimalToUnsignedBinary(increment, 32);
+                    ac.ldrPre(destination, i, false);
+
+                } else if (radioPost.isChecked() && !radioPreMod.isChecked() &&
+                        !radioPre.isChecked() && !radioReg.isChecked()) {
+                    int[] i = ac.decimalToUnsignedBinary(increment, 32);
+                    ac.ldrPost(destination, i);
+
+                }
+            }
+        });
+    }
+
+    public void strExecute() {
+        Button strExecuteButton = (Button) findViewById(R.id.EXE_STR);
+
+        strExecuteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioButton radioReg = (RadioButton) findViewById(R.id.STR_REG);
+                RadioButton radioPreMod = (RadioButton) findViewById(R.id.STR_PREMOD);
+                RadioButton radioPre = (RadioButton) findViewById(R.id.STR_PRE);
+                RadioButton radioPost = (RadioButton) findViewById(R.id.STR_POST);
+                EditText dest = (EditText) findViewById(R.id.STR_DEST);
+                EditText inc = (EditText) findViewById(R.id.STR_INCREMENT;
+                int destination = Integer.parseInt(dest.getText().toString());
+                int increment = Integer.parseInt(inc.getText().toString());
+
+                if (radioReg.isChecked() && !radioPreMod.isChecked() &&
+                        !radioPre.isChecked() && !radioPost.isChecked()) {
+                    ac.str(destination);
+
+                } else if (radioPreMod.isChecked() && !radioReg.isChecked() &&
+                        !radioPre.isChecked() && !radioPost.isChecked()) {
+                    int[] i = ac.decimalToUnsignedBinary(increment, 32);
+                    ac.strPre(destination, i, true);
+
+                } else if (radioPre.isChecked() && !radioPreMod.isChecked() &&
+                        !radioReg.isChecked() && !radioPost.isChecked()) {
+                    int[] i = ac.decimalToUnsignedBinary(increment, 32);
+                    ac.strPre(destination, i, false);
+
+                } else if (radioPost.isChecked() && !radioPreMod.isChecked() &&
+                        !radioPre.isChecked() && !radioReg.isChecked()) {
+                    int[] i = ac.decimalToUnsignedBinary(increment, 32);
+                    ac.strPost(destination, i);
+
+                }
             }
         });
     }
