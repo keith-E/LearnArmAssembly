@@ -251,42 +251,9 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
-//                ExecuteArmCode executeArmCode = new ExecuteArmCode(context, mCodeMap);
+                ExecuteArmCode executeArmCode = new ExecuteArmCode(mCodeMap);
 //                executeArmCode.playCode();
-                int mPosition = 1;
-                Handler mHandler = new Handler();
-                while(mPosition <= 15) {
-                    final int runnableInt = mPosition;
-                    if(mCodeMap.containsKey(mPosition)) {
-    //                    ArmCode lineOfCode = mCodeMap.get(mPosition);
-                            highlightEditorLine(mPosition);
-    //                        processLine(lineOfCode);
-    //                    try {
-    //                        Thread.sleep(1000);
-    //                    } catch (InterruptedException e) {
-    //                        // do nothing
-    //                    }
-                        Thread thread = new Thread() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(3000);
-                                } catch (InterruptedException e) {
-                                }
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        deHighlightEditorLine(runnableInt);
-                                    }
-                                });
-                            }
-                        };
-                        thread.start();
-                    }
-                    mPosition++;
-                }
             }
         });
         mStepButton.setOnClickListener(new View.OnClickListener() {
