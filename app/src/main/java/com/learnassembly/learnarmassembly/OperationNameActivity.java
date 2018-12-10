@@ -148,6 +148,12 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 int operator2 = Integer.parseInt(op2.getText().toString());
 
                 ac.add(destination, operator1, operator2);
+
+                Intent addIntent = new Intent();
+                String d = Integer.toString(destination);
+                addIntent.putExtra(OPERATION_RESULT, d);
+                setResult(RESULT_OK, addIntent);
+                finish();
             }
         });
     }
@@ -166,6 +172,12 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 int operator2 = Integer.parseInt(op2.getText().toString());
 
                 ac.sub(destination, operator1, operator2);
+
+                Intent subIntent = new Intent();
+                String d = Integer.toString(destination);
+                subIntent.putExtra(OPERATION_RESULT, d);
+                setResult(RESULT_OK, subIntent);
+                finish();
             }
         });
     }
