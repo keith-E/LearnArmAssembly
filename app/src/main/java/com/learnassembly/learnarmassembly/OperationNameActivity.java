@@ -173,7 +173,7 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 RadioButton radioPre = (RadioButton) findViewById(R.id.LDR_PRE);
                 RadioButton radioPost = (RadioButton) findViewById(R.id.LDR_POST);
                 EditText dest = (EditText) findViewById(R.id.LDR_DEST);
-                EditText inc = (EditText) findViewById(R.id.LDR_INCREMENT;
+                EditText inc = (EditText) findViewById(R.id.LDR_INCREMENT);
                 int destination = Integer.parseInt(dest.getText().toString());
                 int increment = Integer.parseInt(inc.getText().toString());
 
@@ -212,7 +212,7 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 RadioButton radioPre = (RadioButton) findViewById(R.id.STR_PRE);
                 RadioButton radioPost = (RadioButton) findViewById(R.id.STR_POST);
                 EditText dest = (EditText) findViewById(R.id.STR_DEST);
-                EditText inc = (EditText) findViewById(R.id.STR_INCREMENT;
+                EditText inc = (EditText) findViewById(R.id.STR_INCREMENT);
                 int destination = Integer.parseInt(dest.getText().toString());
                 int increment = Integer.parseInt(inc.getText().toString());
 
