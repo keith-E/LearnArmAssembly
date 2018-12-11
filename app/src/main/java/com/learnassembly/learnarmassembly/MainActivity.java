@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mLabelButton;
     private Button mOperationsButton;
     private Button mPlayButton;
-    private Button mStepButton;
+//    private Button mStepButton;
     private Button mResetButton;
 
     List<String> mBranchNameList;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         mLabelButton = (Button) findViewById(R.id.button_main_label);
         mOperationsButton = (Button) findViewById(R.id.operationsButton);
         mPlayButton = (Button) findViewById(R.id.button_main_play);
-        mStepButton = (Button) findViewById(R.id.button_main_step);
+//        mStepButton = (Button) findViewById(R.id.button_main_step);
         mResetButton = (Button) findViewById(R.id.button_main_reset);
     }
 
@@ -245,12 +245,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        mStepButton.setOnClickListener(new View.OnClickListener() {
+        /*mStepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
         mResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -387,12 +387,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLabelTextInEditor(String labelName) {
-        String labelTextForView = "<font color='blue'>" + labelName + "</font>" + LABEL_COLON;
+        String labelTextForView = "<font color='#fd79a8'>" + labelName + "</font><font color='#00b894'>" + LABEL_COLON + "</font>";
         setEditorLineBasedOnFocus(labelTextForView);
     }
 
     private void setBranchTextInEditor(String branchName) {
-        String branchTextForView = TAB + TAB + TAB + "<font color='red'>b</font> <font color='blue'>"
+        String branchTextForView = TAB + TAB + TAB + "<font color='#74b9ff'>b</font> <font color='#fd79a8'>"
                                    + branchName + "</font>";
         setEditorLineBasedOnFocus(branchTextForView);
     }
