@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#636e72"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -28,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textAlignment="center"
-                android:background="#e5e5e5"
+                android:background="#74b9ff"
                 android:textStyle="bold"
                 android:text="@string/csprDescriptionLabel"
                 android:textSize="16sp" />
@@ -38,6 +39,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:background="#dfe6e9"
                 android:text="@string/zeroBit"
                 android:textAlignment="center"
                 android:textSize="16sp" />
@@ -47,7 +49,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="#e5e5e5"
+                android:background="#b2bec3"
                 android:text="@string/zeroBit"
                 android:textAlignment="center"
                 android:textSize="16sp" />
@@ -57,6 +59,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:background="#dfe6e9"
                 android:text="@string/zeroBit"
                 android:textAlignment="center"
                 android:textSize="16sp" />
@@ -66,7 +69,7 @@
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#e5e5e5"
+                android:background="#b2bec3"
                 android:text="@string/zeroBit"
                 android:textAlignment="center"
                 android:textSize="16sp" />
@@ -117,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:background="#f62a2a">
+            android:background="#fab1a0">
 
                 <LinearLayout
                     android:layout_width="24dp"
@@ -209,6 +212,7 @@
             android:layout_width="390dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="24dp"
+            android:background="#b2bec3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent">
@@ -223,7 +227,7 @@
                         android:id="@+id/textview_main_register_bank_label_blank"
                         android:layout_width="match_parent"
                         android:layout_height="22dp"
-                        android:background="#e5e5e5"
+                        android:background="#55efc4"
                         android:text=""
                         android:textSize="16dp"/>
                     <TextView
@@ -231,7 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="22dp"
                         android:layout_weight="10"
-                        android:background="#e5e5e5"
+                        android:background="#55efc4"
                         android:textStyle="bold"
                         android:text="                           REGISTER BANK"
                         android:textSize="16sp" />
@@ -637,6 +641,8 @@
                     android:id="@+id/textview_main_editor_line_one_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="1"
                     android:textSize="24sp" />
 
@@ -644,7 +650,7 @@
                     android:id="@+id/textview_main_editor_line_one_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -663,6 +669,8 @@
                     android:id="@+id/textview_main_editor_line_two_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="2"
                     android:textSize="24sp" />
 
@@ -670,6 +678,7 @@
                     android:id="@+id/textview_main_editor_line_two_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -688,6 +697,8 @@
                     android:id="@+id/textview_main_editor_line_three_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="3"
                     android:textSize="24sp" />
 
@@ -695,7 +706,7 @@
                     android:id="@+id/textview_main_editor_line_three_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -714,6 +725,8 @@
                     android:id="@+id/textview_main_editor_line_four_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="4"
                     android:textSize="24sp" />
 
@@ -722,6 +735,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:background="#2d3436"
                     android:focusable="false"
                     android:paddingStart="5dp"
                     android:paddingEnd="10dp"
@@ -739,6 +753,8 @@
                     android:id="@+id/textview_main_editor_line_five_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="5"
                     android:textSize="24sp" />
 
@@ -746,7 +762,7 @@
                     android:id="@+id/textview_main_editor_line_five_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -765,6 +781,8 @@
                     android:id="@+id/textview_main_editor_line_six_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="6"
                     android:textSize="24sp" />
 
@@ -772,6 +790,7 @@
                     android:id="@+id/textview_main_editor_line_six_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -790,6 +809,8 @@
                     android:id="@+id/textview_main_editor_line_seven_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="7"
                     android:textSize="24sp" />
 
@@ -797,7 +818,7 @@
                     android:id="@+id/textview_main_editor_line_seven_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -816,6 +837,8 @@
                     android:id="@+id/textview_main_editor_line_eight_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="8"
                     android:textSize="24sp" />
 
@@ -824,6 +847,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:background="#2d3436"
                     android:focusable="false"
                     android:paddingStart="5dp"
                     android:paddingEnd="10dp"
@@ -841,6 +865,8 @@
                     android:id="@+id/textview_main_editor_line_nine_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="9"
                     android:textSize="24sp" />
 
@@ -848,7 +874,7 @@
                     android:id="@+id/textview_main_editor_line_nine_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -867,6 +893,8 @@
                     android:id="@+id/textview_main_editor_line_ten_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="10"
                     android:textSize="24sp" />
 
@@ -874,6 +902,7 @@
                     android:id="@+id/textview_main_editor_line_ten_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -892,6 +921,8 @@
                     android:id="@+id/textview_main_editor_line_eleven_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="11"
                     android:textSize="24sp" />
 
@@ -899,7 +930,7 @@
                     android:id="@+id/textview_main_editor_line_eleven_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -918,6 +949,8 @@
                     android:id="@+id/textview_main_editor_line_twelve_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="12"
                     android:textSize="24sp" />
 
@@ -926,6 +959,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:background="#2d3436"
                     android:focusable="false"
                     android:paddingStart="5dp"
                     android:paddingEnd="10dp"
@@ -943,6 +977,8 @@
                     android:id="@+id/textview_main_editor_line_thirteen_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="13"
                     android:textSize="24sp" />
 
@@ -950,7 +986,7 @@
                     android:id="@+id/textview_main_editor_line_thirteen_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -969,6 +1005,8 @@
                     android:id="@+id/textview_main_editor_line_fourteen_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="14"
                     android:textSize="24sp" />
 
@@ -976,6 +1014,7 @@
                     android:id="@+id/textview_main_editor_line_fourteen_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -994,6 +1033,8 @@
                     android:id="@+id/textview_main_editor_line_fifteen_label"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:background="#81ecec"
+                    android:textAlignment="center"
                     android:text="15"
                     android:textSize="24sp" />
 
@@ -1001,7 +1042,7 @@
                     android:id="@+id/textview_main_editor_line_fifteen_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dfdddd"
+                    android:background="#2d3436"
                     android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="5dp"
@@ -1033,6 +1074,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
             android:text="LABEL" />
 
         <Button
