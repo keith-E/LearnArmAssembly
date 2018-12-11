@@ -1,187 +1,77 @@
 package com.learnassembly.learnarmassembly;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class ExecuteArmCode  {
 
-    private Map<Integer, ArmCode> mCodeMap;
-    private int mPosition;
-    private Context context;
+    private static final int MAX_CODE_MAP_SIZE = 15;
 
-    public ExecuteArmCode(Context context, Map<Integer, ArmCode> code) {
-        this.context = context;
+    private Map<Integer, ArmCode> mCodeMap;
+    private Map<Integer, String> mRegisterBankValues;
+    private int mPosition;
+
+    public ExecuteArmCode(Map<Integer, ArmCode> code) {
         mCodeMap = code;
         mPosition = 1;
+        mRegisterBankValues = new HashMap<>();
     }
 
     public void playCode() {
-        while(mPosition <= mCodeMap.size()) {
+        while(mPosition <= MAX_CODE_MAP_SIZE) {
             ArmCode lineOfCode = mCodeMap.get(mPosition);
             if(lineOfCode != null) {
-                highlightEditorLine();
-                processLine(lineOfCode);
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    // do nothing
-//                }
-//                deHighlightEditorLine();
+                processLineOfCode(lineOfCode);
             }
             mPosition++;
         }
     }
 
     public void stepCode() {
-
+        boolean codeFound = false;
+        while(!codeFound || mPosition <= MAX_CODE_MAP_SIZE) {
+            ArmCode lineOfCode = mCodeMap.get(mPosition);
+            if(lineOfCode != null) {
+                codeFound = true;
+                processLineOfCode(lineOfCode);
+            }
+            mPosition++;
+        }
+        codeFound = false;
     }
 
     public void stopCode() {
 
     }
 
-    private void processLine(ArmCode lineOfCodeToProcess) {
+    public Map<Integer, String> getRegisterBankValues() {
+        return mRegisterBankValues;
+    }
+
+    private void processLineOfCode(ArmCode lineOfCodeToProcess) {
         if(lineOfCodeToProcess instanceof Label) {
+            // do nothing
+        } else if(lineOfCodeToProcess instanceof Branch) {
+            String labelNameToBranchTo = ((Branch)lineOfCodeToProcess).getmBranchToLabelName();
+            changePositionToLabel(labelNameToBranchTo);
+        } else if(lineOfCodeToProcess instanceof Mov) {
+            // TODO: UPDATE THIS! blah blah blah
+            mRegisterBankValues.put(0, "0000 0001 1110 0000 1101 0010 0110 0000");
+            mRegisterBankValues.put(3, "0110 0001 1010 0010 1101 0010 0110 0000");
+        }
+        // TROUBLESHOOTING
+        mRegisterBankValues.put(0, "0000 0001 1110 0000 1101 0010 0110 0000");
+        mRegisterBankValues.put(3, "0110 0001 1010 0010 1101 0010 0110 0000");
+    }
 
-
+    private void changePositionToLabel(String labelNameToBranchTo) {
+        for(Map.Entry<Integer, ArmCode> code : mCodeMap.entrySet()) {
+            if(code instanceof Label) {
+                if(((Label)code).getLabelName().equalsIgnoreCase(labelNameToBranchTo)) {
+                    mPosition = ((Label)code).returnPosition();
+                }
+            }
         }
     }
 
-    private void highlightEditorLine() {
-        TextView editorLine;
-        switch(mPosition) {
-            case 1:
-                editorLine =(TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_one_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 2:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_two_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 3:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_three_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 4:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_four_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 5:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_five_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 6:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_six_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 7:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_seven_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 8:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_eight_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 9:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_nine_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 10:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_ten_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 11:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_eleven_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 12:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_twelve_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 13:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_thirteen_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 14:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_fourteen_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-            case 15:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_fifteen_contents);
-                editorLine.setHighlightColor(Color.YELLOW);
-                break;
-        }
-    }
-    private void deHighlightEditorLine() {
-        TextView editorLine;
-        switch(mPosition) {
-            case 1:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_one_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 2:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_two_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 3:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_three_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 4:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_four_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 5:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_five_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 6:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_six_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 7:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_seven_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 8:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_eight_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 9:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_nine_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 10:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_ten_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 11:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_eleven_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 12:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_twelve_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 13:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_thirteen_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 14:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_fourteen_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-            case 15:
-                editorLine = (TextView) ((Activity)context).findViewById(R.id.textview_main_editor_line_fifteen_contents);
-                editorLine.setHighlightColor(Color.WHITE);
-                break;
-        }
-    }
 }

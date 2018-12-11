@@ -11,8 +11,8 @@ public class Branch implements ArmCode {
         mBranchToLabelName = name;
     }
 
-    public String branchToLabel(HashMap<Integer, ArmCode> codeMap) {
-        return null;
+    public String getmBranchToLabelName() {
+        return mBranchToLabelName;
     }
 
     @Override

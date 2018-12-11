@@ -1,13 +1,10 @@
 package com.learnassembly.learnarmassembly;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Region;
 import android.media.VolumeShaper;
 import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,34 +48,52 @@ public class MainActivity extends AppCompatActivity {
     private TextView mEditorLineThirteenContent;
     private TextView mEditorLineFourteenContent;
     private TextView mEditorLineFifteenContent;
+    private TextView mRegisterBankZeroContent;
+    private TextView mRegisterBankOneContent;
+    private TextView mRegisterBankTwoContent;
+    private TextView mRegisterBankThreeContent;
+    private TextView mRegisterBankFourContent;
+    private TextView mRegisterBankFiveContent;
+    private TextView mRegisterBankSixContent;
+    private TextView mRegisterBankSevenContent;
+    private TextView mRegisterBankEightContent;
+    private TextView mRegisterBankNineContent;
+    private TextView mRegisterBankTenContent;
+    private TextView mRegisterBankElevenContent;
+    private TextView mRegisterBankTwelveContent;
+    private TextView mRegisterBankStackPointerContent;
+    private TextView mRegisterBankLinkRegisterContent;
+    private TextView mRegisterBankProgramCounterContent;
     private Button mBranchButton;
     private Button mLabelButton;
     private Button mOperationsButton;
     private Button mPlayButton;
     private Button mStepButton;
-    private Button mStopButton;
+    private Button mResetButton;
 
     List<String> mBranchNameList;
-    Map<Integer, String> editorContentsMap;
+    Map<Integer, TextView> mEditorContentsMap;
+    Map<Integer, TextView> mRegisterBankContentsMap;
     Map<Integer, ArmCode> mCodeMap;
-    int editorFocus;
+    int mEditorFocus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Initialize logic elements
+        mBranchNameList = new ArrayList<>();
+        mEditorContentsMap = new HashMap<>();
+        mRegisterBankContentsMap = new HashMap<>();
+        mCodeMap = new HashMap<>();
+        mEditorFocus = 0;
         // Initialize UI/UX elements
         initializeLayouts();
         initializeButtons();
         initializeEditorLines();
-        // Initialize logic elements
-        mBranchNameList = new ArrayList<>();
-        editorContentsMap = new HashMap<>();
-        mCodeMap = new HashMap<>();
-        editorFocus = 0;
-        for(int i = 1; i <= 15; i++) {
-            editorContentsMap.put(i, "");
-        }
+        initializeEditorLinesMap();
+        initializeRegisterBank();
+        initializeRegisterBankMap();
         // Handle UI/UX events
         editorContentsClicked();
         coreButtonClicked();
@@ -95,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         mOperationsButton = (Button) findViewById(R.id.operationsButton);
         mPlayButton = (Button) findViewById(R.id.button_main_play);
         mStepButton = (Button) findViewById(R.id.button_main_step);
-        mStopButton = (Button) findViewById(R.id.button_main_stop);
+        mResetButton = (Button) findViewById(R.id.button_main_reset);
     }
 
     private void initializeEditorLines() {
@@ -116,112 +131,74 @@ public class MainActivity extends AppCompatActivity {
         mEditorLineFifteenContent = (TextView) findViewById(R.id.textview_main_editor_line_fifteen_contents);
     }
 
+    private void initializeEditorLinesMap() {
+        mEditorContentsMap.put(1, mEditorLineOneContent);
+        mEditorContentsMap.put(2, mEditorLineTwoContent);
+        mEditorContentsMap.put(3, mEditorLineThreeContent);
+        mEditorContentsMap.put(4, mEditorLineFourContent);
+        mEditorContentsMap.put(5, mEditorLineFiveContent);
+        mEditorContentsMap.put(6, mEditorLineSixContent);
+        mEditorContentsMap.put(7, mEditorLineSevenContent);
+        mEditorContentsMap.put(8, mEditorLineEightContent);
+        mEditorContentsMap.put(9, mEditorLineNineContent);
+        mEditorContentsMap.put(10, mEditorLineTenContent);
+        mEditorContentsMap.put(11, mEditorLineElevenContent);
+        mEditorContentsMap.put(12, mEditorLineTwelveContent);
+        mEditorContentsMap.put(13, mEditorLineThirteenContent);
+        mEditorContentsMap.put(14, mEditorLineFourteenContent);
+        mEditorContentsMap.put(15, mEditorLineFifteenContent);
+    }
+
+    private void initializeRegisterBank() {
+        mRegisterBankZeroContent = (TextView) findViewById(R.id.r0Contents);
+        mRegisterBankOneContent = (TextView) findViewById(R.id.r1Contents);
+        mRegisterBankTwoContent = (TextView) findViewById(R.id.r2Contents);
+        mRegisterBankThreeContent = (TextView) findViewById(R.id.r3Contents);
+        mRegisterBankFourContent = (TextView) findViewById(R.id.r4Contents);
+        mRegisterBankFiveContent = (TextView) findViewById(R.id.r5Contents);
+        mRegisterBankSixContent = (TextView) findViewById(R.id.r6Contents);
+        mRegisterBankSevenContent = (TextView) findViewById(R.id.r7Contents);
+        mRegisterBankEightContent = (TextView) findViewById(R.id.r8Contents);
+        mRegisterBankNineContent = (TextView) findViewById(R.id.r9Contents);
+        mRegisterBankTenContent = (TextView) findViewById(R.id.r10Contents);
+        mRegisterBankElevenContent = (TextView) findViewById(R.id.r11Contents);
+        mRegisterBankTwelveContent = (TextView) findViewById(R.id.r12Contents);
+        mRegisterBankStackPointerContent = (TextView) findViewById(R.id.spContents);
+        mRegisterBankLinkRegisterContent = (TextView) findViewById(R.id.lrContents);
+        mRegisterBankProgramCounterContent = (TextView) findViewById(R.id.pcContents);
+    }
+
+    private void initializeRegisterBankMap() {
+        mRegisterBankContentsMap.put(0, mRegisterBankZeroContent);
+        mRegisterBankContentsMap.put(1, mRegisterBankOneContent);
+        mRegisterBankContentsMap.put(2, mRegisterBankTwoContent);
+        mRegisterBankContentsMap.put(3, mRegisterBankThreeContent);
+        mRegisterBankContentsMap.put(4, mRegisterBankFourContent);
+        mRegisterBankContentsMap.put(5, mRegisterBankFiveContent);
+        mRegisterBankContentsMap.put(6, mRegisterBankSixContent);
+        mRegisterBankContentsMap.put(7, mRegisterBankSevenContent);
+        mRegisterBankContentsMap.put(8, mRegisterBankEightContent);
+        mRegisterBankContentsMap.put(9, mRegisterBankNineContent);
+        mRegisterBankContentsMap.put(10, mRegisterBankTenContent);
+        mRegisterBankContentsMap.put(11, mRegisterBankElevenContent);
+        mRegisterBankContentsMap.put(12, mRegisterBankTwelveContent);
+        mRegisterBankContentsMap.put(13, mRegisterBankStackPointerContent);
+        mRegisterBankContentsMap.put(14, mRegisterBankLinkRegisterContent);
+        mRegisterBankContentsMap.put(15, mRegisterBankProgramCounterContent);
+    }
+
     private void editorContentsClicked() {
-        mEditorLineOneContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 1;
-            }
-        });
-        mEditorLineTwoContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 2;
-            }
-        });
-        mEditorLineThreeContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 3;
-            }
-        });
-        mEditorLineFourContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 4;
-            }
-        });
-        mEditorLineFiveContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 5;
-            }
-        });
-        mEditorLineSixContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 6;
-            }
-        });
-        mEditorLineSevenContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 7;
-            }
-        });
-        mEditorLineEightContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 8;
-            }
-        });
-        mEditorLineNineContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 9;
-            }
-        });
-        mEditorLineTenContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 10;
-            }
-        });
-        mEditorLineElevenContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 11;
-            }
-        });
-        mEditorLineTwelveContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 12;
-            }
-        });
-        mEditorLineThirteenContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 13;
-            }
-        });
-        mEditorLineFourteenContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 14;
-            }
-        });
-        mEditorLineFifteenContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMainButtonLayout();
-                editorFocus = 15;
-            }
-        });
+        for(int i = 1; i <= 15; i++) {
+            final int lineToFocusOn = i;
+            TextView editorLineContent = mEditorContentsMap.get(i);
+            editorLineContent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showMainButtonLayout();
+                    mEditorFocus = lineToFocusOn;
+                }
+            });
+        }
     }
 
     private void showMainButtonLayout() {
@@ -258,42 +235,10 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
-//                ExecuteArmCode executeArmCode = new ExecuteArmCode(context, mCodeMap);
-//                executeArmCode.playCode();
-                int mPosition = 1;
-                Handler mHandler = new Handler();
-                while(mPosition <= 15) {
-                    final int runnableInt = mPosition;
-                    if(mCodeMap.containsKey(mPosition)) {
-    //                    ArmCode lineOfCode = mCodeMap.get(mPosition);
-                            highlightEditorLine(mPosition);
-    //                        processLine(lineOfCode);
-    //                    try {
-    //                        Thread.sleep(1000);
-    //                    } catch (InterruptedException e) {
-    //                        // do nothing
-    //                    }
-                        Thread thread = new Thread() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(3000);
-                                } catch (InterruptedException e) {
-                                }
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        deHighlightEditorLine(runnableInt);
-                                    }
-                                });
-                            }
-                        };
-                        thread.start();
-                    }
-                    mPosition++;
-                }
+                ExecuteArmCode executeArmCode = new ExecuteArmCode(mCodeMap);
+                executeArmCode.playCode();
+                Map<Integer, String> registerBankResults = executeArmCode.getRegisterBankValues();
+                setRegisterBankContentsBasedOnExecuteResults(registerBankResults);
             }
         });
         mStepButton.setOnClickListener(new View.OnClickListener() {
@@ -302,12 +247,42 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        mStopButton.setOnClickListener(new View.OnClickListener() {
+        mResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                resetUi();
+                resetVariables();
             }
         });
+    }
+
+    private void setRegisterBankContentsBasedOnExecuteResults(Map<Integer, String> registerBankResults) {
+        for(int i = 0; i <= 15; i++) {
+            if(registerBankResults.get(i) != null) {
+                String valueToSet = registerBankResults.get(i);
+                TextView registerBankToSet = mRegisterBankContentsMap.get(i);
+                registerBankToSet.setText(valueToSet);
+            }
+        }
+    }
+
+    private void resetUi() {
+        for(int i = 1; i <= 15; i++) {
+            TextView editorLineContents = mEditorContentsMap.get(i);
+            editorLineContents.setText("");
+        }
+        for(int i = 0; i <= 15; i++) {
+            TextView registerBankContents = mRegisterBankContentsMap.get(i);
+            registerBankContents.setText(R.string.thirtyTwoBitBinaryZero);
+        }
+    }
+
+    private void resetVariables() {
+        mCodeMap.clear();
+        mEditorFocus = 0;
+        mBranchNameList.clear();
+        mBranchButton.setVisibility(View.GONE);
+        mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
     }
 
     private void launchLabelNameActivity(View view) {
@@ -335,17 +310,17 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == LABEL_NAME_REQUEST) {
             if(resultCode == RESULT_OK) {
                 String labelName = data.getStringExtra(LabelNameActivity.LABEL_NAME);
-                Label labelCode = new Label(editorFocus, labelName);
+                Label labelCode = new Label(mEditorFocus, labelName);
                 mBranchNameList.add(labelName);
-                mCodeMap.put(editorFocus, labelCode);
+                mCodeMap.put(mEditorFocus, labelCode);
                 setLabelTextInEditor(labelName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
             }
         } else if(requestCode == BRANCH_NAME_PICK_REQUEST) {
             if(resultCode == RESULT_OK) {
                 String branchName = data.getStringExtra(BranchNameActivity.BRANCH_NAME);
-                Branch branchCode = new Branch(editorFocus, branchName);
-                mCodeMap.put(editorFocus, branchCode);
+                Branch branchCode = new Branch(mEditorFocus, branchName);
+                mCodeMap.put(mEditorFocus, branchCode);
                 setBranchTextInEditor(branchName);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
             }
@@ -413,272 +388,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLabelTextInEditor(String labelName) {
         String labelTextForView = "<font color='blue'>" + labelName + "</font>" + LABEL_COLON;
-        String labelTextForCodeMap = "b " + labelName;
-        setEditorLineBasedOnFocus(labelTextForView, labelTextForCodeMap);
-        // TODO: Possibly create code objects for HashMap -- ie interface (...implements Code)
+        setEditorLineBasedOnFocus(labelTextForView);
     }
 
     private void setBranchTextInEditor(String branchName) {
         String branchTextForView = TAB + TAB + TAB + "<font color='red'>b</font> <font color='blue'>"
                                    + branchName + "</font>";
-        String branchTextForCodeMap = "b " + branchName;
-        setEditorLineBasedOnFocus(branchTextForView, branchTextForCodeMap);
+        setEditorLineBasedOnFocus(branchTextForView);
     }
 
-    private void setEditorLineBasedOnFocus(String textToSetInView, String textToSetInMap) {
-        switch (editorFocus) {
-            case 1:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineOneContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                                                  TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineOneContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                editorContentsMap.put(1, textToSetInMap);
-                break;
-            case 2:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineTwoContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineTwoContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 3:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineThreeContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineThreeContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 4:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFourContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineFourContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 5:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFiveContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineFiveContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 6:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineSixContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineSixContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 7:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineSevenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineSevenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 8:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineEightContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineEightContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 9:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineNineContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineNineContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 10:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineTenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineTenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 11:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineElevenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineElevenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 12:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineTwelveContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineTwelveContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 13:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineThirteenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineThirteenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 14:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFourteenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineFourteenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-            case 15:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    mEditorLineFifteenContent.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
-                            TextView.BufferType.SPANNABLE);
-                } else {
-                    mEditorLineFifteenContent.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
-                }
-                break;
-        }
-    }
-    private void highlightEditorLine(int mPosition) {
-        TextView editorLine;
-        switch(mPosition) {
-            case 1:
-                editorLine =(TextView) findViewById(R.id.textview_main_editor_line_one_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 2:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_two_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 3:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_three_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 4:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_four_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 5:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_five_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 6:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_six_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 7:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_seven_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 8:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eight_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 9:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_nine_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 10:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_ten_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 11:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eleven_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 12:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_twelve_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 13:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_thirteen_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 14:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fourteen_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-            case 15:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fifteen_contents);
-                editorLine.setBackgroundColor(Color.YELLOW);
-                break;
-        }
-    }
-
-    private void deHighlightEditorLine(int mPosition) {
-        TextView editorLine;
-        switch(mPosition) {
-            case 1:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_one_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 2:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_two_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 3:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_three_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 4:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_four_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 5:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_five_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 6:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_six_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 7:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_seven_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 8:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eight_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 9:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_nine_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 10:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_ten_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 11:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_eleven_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 12:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_twelve_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 13:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_thirteen_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 14:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fourteen_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
-            case 15:
-                editorLine = (TextView) findViewById(R.id.textview_main_editor_line_fifteen_contents);
-                editorLine.setBackgroundColor(Color.WHITE);
-                break;
+    private void setEditorLineBasedOnFocus(String textToSetInView) {
+        TextView focusedEditorLine = mEditorContentsMap.get(mEditorFocus);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            focusedEditorLine.setText(Html.fromHtml(textToSetInView,  Html.FROM_HTML_MODE_LEGACY),
+                    TextView.BufferType.SPANNABLE);
+        } else {
+            focusedEditorLine.setText(Html.fromHtml(textToSetInView), TextView.BufferType.SPANNABLE);
         }
     }
 }
