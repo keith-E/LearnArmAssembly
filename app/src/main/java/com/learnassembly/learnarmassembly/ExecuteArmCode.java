@@ -1,9 +1,11 @@
 package com.learnassembly.learnarmassembly;
 
+import android.widget.TextView;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExecuteArmCode  {
+public class ExecuteArmCode {
 
     private static final int MAX_CODE_MAP_SIZE = 15;
 

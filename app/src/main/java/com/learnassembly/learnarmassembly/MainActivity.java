@@ -235,10 +235,14 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExecuteArmCode executeArmCode = new ExecuteArmCode(mCodeMap);
+               /* ExecuteArmCode executeArmCode = new ExecuteArmCode(mCodeMap);
                 executeArmCode.playCode();
                 Map<Integer, String> registerBankResults = executeArmCode.getRegisterBankValues();
-                setRegisterBankContentsBasedOnExecuteResults(registerBankResults);
+                setRegisterBankContentsBasedOnExecuteResults(registerBankResults);*/
+
+                for (int i = 0; i < 16; i++) {
+                    setRegisterBankOnDisplay(i);
+                }
             }
         });
         mStepButton.setOnClickListener(new View.OnClickListener() {
@@ -333,6 +337,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setRegisterBankOnDisplay(int register) {
+        int[] binaryNumber = registerBank.getRegister(register);
+        String binaryString = ViewConversion.binaryToString(binaryNumber);
+
+        TextView registerContents = determineRegisterID(register);
+        registerContents.setText(binaryString);
+    }
+
     private TextView determineRegisterID(int regNum) {
         TextView registerContent;
 
@@ -372,15 +384,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return (TextView) findViewById(R.id.r0Contents);    // by default
-    }
-
-
-    private void setRegisterBankOnDisplay(int register) {
-        int[] binaryNumber = registerBank.getRegister(register);
-        String binaryString = ViewConversion.binaryToString(binaryNumber);
-
-        TextView registerContents = determineRegisterID(register);
-        registerContents.setText(binaryString);
     }
 
     private void setLabelTextInEditor(String labelName) {
