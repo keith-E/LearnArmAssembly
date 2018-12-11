@@ -40,15 +40,32 @@ public class MainActivity extends AppCompatActivity {
     private TextView mEditorLineThirteenContent;
     private TextView mEditorLineFourteenContent;
     private TextView mEditorLineFifteenContent;
+    private TextView mRegisterBankZeroContent;
+    private TextView mRegisterBankOneContent;
+    private TextView mRegisterBankTwoContent;
+    private TextView mRegisterBankThreeContent;
+    private TextView mRegisterBankFourContent;
+    private TextView mRegisterBankFiveContent;
+    private TextView mRegisterBankSixContent;
+    private TextView mRegisterBankSevenContent;
+    private TextView mRegisterBankEightContent;
+    private TextView mRegisterBankNineContent;
+    private TextView mRegisterBankTenContent;
+    private TextView mRegisterBankElevenContent;
+    private TextView mRegisterBankTwelveContent;
+    private TextView mRegisterBankStackPointerContent;
+    private TextView mRegisterBankLinkRegisterContent;
+    private TextView mRegisterBankProgramCounterContent;
     private Button mBranchButton;
     private Button mLabelButton;
     private Button mOperationsButton;
     private Button mPlayButton;
     private Button mStepButton;
-    private Button mStopButton;
+    private Button mResetButton;
 
     List<String> mBranchNameList;
     Map<Integer, TextView> mEditorContentsMap;
+    Map<Integer, TextView> mRegisterBankContentsMap;
     Map<Integer, ArmCode> mCodeMap;
     int mEditorFocus;
 
@@ -59,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize logic elements
         mBranchNameList = new ArrayList<>();
         mEditorContentsMap = new HashMap<>();
+        mRegisterBankContentsMap = new HashMap<>();
         mCodeMap = new HashMap<>();
         mEditorFocus = 0;
         // Initialize UI/UX elements
@@ -66,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         initializeButtons();
         initializeEditorLines();
         initializeEditorLinesMap();
+        initializeRegisterBank();
+        initializeRegisterBankMap();
         // Handle UI/UX events
         editorContentsClicked();
         coreButtonClicked();
@@ -82,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         mOperationsButton = (Button) findViewById(R.id.operationsButton);
         mPlayButton = (Button) findViewById(R.id.button_main_play);
         mStepButton = (Button) findViewById(R.id.button_main_step);
-        mStopButton = (Button) findViewById(R.id.button_main_stop);
+        mResetButton = (Button) findViewById(R.id.button_main_reset);
     }
 
     private void initializeEditorLines() {
@@ -119,6 +139,44 @@ public class MainActivity extends AppCompatActivity {
         mEditorContentsMap.put(13, mEditorLineThirteenContent);
         mEditorContentsMap.put(14, mEditorLineFourteenContent);
         mEditorContentsMap.put(15, mEditorLineFifteenContent);
+    }
+
+    private void initializeRegisterBank() {
+        mRegisterBankZeroContent = (TextView) findViewById(R.id.r0Contents);
+        mRegisterBankOneContent = (TextView) findViewById(R.id.r1Contents);
+        mRegisterBankTwoContent = (TextView) findViewById(R.id.r2Contents);
+        mRegisterBankThreeContent = (TextView) findViewById(R.id.r3Contents);
+        mRegisterBankFourContent = (TextView) findViewById(R.id.r4Contents);
+        mRegisterBankFiveContent = (TextView) findViewById(R.id.r5Contents);
+        mRegisterBankSixContent = (TextView) findViewById(R.id.r6Contents);
+        mRegisterBankSevenContent = (TextView) findViewById(R.id.r7Contents);
+        mRegisterBankEightContent = (TextView) findViewById(R.id.r8Contents);
+        mRegisterBankNineContent = (TextView) findViewById(R.id.r9Contents);
+        mRegisterBankTenContent = (TextView) findViewById(R.id.r10Contents);
+        mRegisterBankElevenContent = (TextView) findViewById(R.id.r11Contents);
+        mRegisterBankTwelveContent = (TextView) findViewById(R.id.r12Contents);
+        mRegisterBankStackPointerContent = (TextView) findViewById(R.id.spContents);
+        mRegisterBankLinkRegisterContent = (TextView) findViewById(R.id.lrContents);
+        mRegisterBankProgramCounterContent = (TextView) findViewById(R.id.pcContents);
+    }
+
+    private void initializeRegisterBankMap() {
+        mRegisterBankContentsMap.put(0, mRegisterBankZeroContent);
+        mRegisterBankContentsMap.put(1, mRegisterBankOneContent);
+        mRegisterBankContentsMap.put(2, mRegisterBankTwoContent);
+        mRegisterBankContentsMap.put(3, mRegisterBankThreeContent);
+        mRegisterBankContentsMap.put(4, mRegisterBankFourContent);
+        mRegisterBankContentsMap.put(5, mRegisterBankFiveContent);
+        mRegisterBankContentsMap.put(6, mRegisterBankSixContent);
+        mRegisterBankContentsMap.put(7, mRegisterBankSevenContent);
+        mRegisterBankContentsMap.put(8, mRegisterBankEightContent);
+        mRegisterBankContentsMap.put(9, mRegisterBankNineContent);
+        mRegisterBankContentsMap.put(10, mRegisterBankTenContent);
+        mRegisterBankContentsMap.put(11, mRegisterBankElevenContent);
+        mRegisterBankContentsMap.put(12, mRegisterBankTwelveContent);
+        mRegisterBankContentsMap.put(13, mRegisterBankStackPointerContent);
+        mRegisterBankContentsMap.put(14, mRegisterBankLinkRegisterContent);
+        mRegisterBankContentsMap.put(15, mRegisterBankProgramCounterContent);
     }
 
     private void editorContentsClicked() {
@@ -170,8 +228,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ExecuteArmCode executeArmCode = new ExecuteArmCode(mCodeMap);
-//                executeArmCode.playCode();
-
+                executeArmCode.playCode();
+                Map<Integer, String> registerBankResults = executeArmCode.getRegisterBankValues();
+                setRegisterBankContentsBasedOnExecuteResults(registerBankResults);
             }
         });
         mStepButton.setOnClickListener(new View.OnClickListener() {
@@ -180,12 +239,42 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        mStopButton.setOnClickListener(new View.OnClickListener() {
+        mResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                resetUi();
+                resetVariables();
             }
         });
+    }
+
+    private void setRegisterBankContentsBasedOnExecuteResults(Map<Integer, String> registerBankResults) {
+        for(int i = 0; i <= 15; i++) {
+            if(registerBankResults.get(i) != null) {
+                String valueToSet = registerBankResults.get(i);
+                TextView registerBankToSet = mRegisterBankContentsMap.get(i);
+                registerBankToSet.setText(valueToSet);
+            }
+        }
+    }
+
+    private void resetUi() {
+        for(int i = 1; i <= 15; i++) {
+            TextView editorLineContents = mEditorContentsMap.get(i);
+            editorLineContents.setText("");
+        }
+        for(int i = 0; i <= 15; i++) {
+            TextView registerBankContents = mRegisterBankContentsMap.get(i);
+            registerBankContents.setText(R.string.thirtyTwoBitBinaryZero);
+        }
+    }
+
+    private void resetVariables() {
+        mCodeMap.clear();
+        mEditorFocus = 0;
+        mBranchNameList.clear();
+        mBranchButton.setVisibility(View.GONE);
+        mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
     }
 
     private void launchLabelNameActivity(View view) {
