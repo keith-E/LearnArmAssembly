@@ -116,18 +116,20 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 EditText src = (EditText) findViewById(R.id.MOV_SRC);
                 int destination = Integer.parseInt(dest.getText().toString());
                 int source = Integer.parseInt(src.getText().toString());
+                String operation = "";
 
                 if (radioCons.isChecked() && !radioReg.isChecked()) {
                     int[] cons = ac.decimalToUnsignedBinary(source, 32);
                     ac.mov(destination, cons);
+                    operation = "MOV r" + destination + ", " + source;
 
                 } else if (radioReg.isChecked() && !radioCons.isChecked()) {
                     ac.mov(destination, source);
+                    operation = "MOV r" + destination + ", r" + source;
                 }
 
                 Intent movIntent = new Intent();
-                String d = Integer.toString(destination);
-                movIntent.putExtra(OPERATION_RESULT, d);
+                movIntent.putExtra(OPERATION_RESULT, operation);
                 setResult(RESULT_OK, movIntent);
                 finish();
             }
@@ -149,9 +151,10 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
 
                 ac.add(destination, operator1, operator2);
 
+                String operation = "ADD r" + destination + ", r" + operator1 + ", r" + operator2;
+
                 Intent addIntent = new Intent();
-                String d = Integer.toString(destination);
-                addIntent.putExtra(OPERATION_RESULT, d);
+                addIntent.putExtra(OPERATION_RESULT, operation);
                 setResult(RESULT_OK, addIntent);
                 finish();
             }
@@ -173,9 +176,10 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
 
                 ac.sub(destination, operator1, operator2);
 
+                String operation = "SUB r" + destination + ", r" + operator1 + ", r" + operator2;
+
                 Intent subIntent = new Intent();
-                String d = Integer.toString(destination);
-                subIntent.putExtra(OPERATION_RESULT, d);
+                subIntent.putExtra(OPERATION_RESULT, operation);
                 setResult(RESULT_OK, subIntent);
                 finish();
             }
@@ -196,27 +200,36 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 EditText inc = (EditText) findViewById(R.id.LDR_INCREMENT);
                 int destination = Integer.parseInt(dest.getText().toString());
                 int increment = Integer.parseInt(inc.getText().toString());
+                String operation = "";
 
                 if (radioReg.isChecked() && !radioPreMod.isChecked() &&
                         !radioPre.isChecked() && !radioPost.isChecked()) {
                     ac.ldr(destination);
+                    operation = "LDR r" + destination + ", [sp]";
 
                 } else if (radioPreMod.isChecked() && !radioReg.isChecked() &&
                         !radioPre.isChecked() && !radioPost.isChecked()) {
                     int[] i = ac.decimalToUnsignedBinary(increment, 32);
                     ac.ldrPre(destination, i, true);
+                    operation = "LDR r" + destination + ", [sp, #" + increment + "]!";
 
                 } else if (radioPre.isChecked() && !radioPreMod.isChecked() &&
                         !radioReg.isChecked() && !radioPost.isChecked()) {
                     int[] i = ac.decimalToUnsignedBinary(increment, 32);
                     ac.ldrPre(destination, i, false);
+                    operation = "LDR r" + destination + ", [sp, #" + increment + "]";
 
                 } else if (radioPost.isChecked() && !radioPreMod.isChecked() &&
                         !radioPre.isChecked() && !radioReg.isChecked()) {
                     int[] i = ac.decimalToUnsignedBinary(increment, 32);
                     ac.ldrPost(destination, i);
-
+                    operation = "LDR r" + destination + ", [sp], #" + increment;
                 }
+
+                Intent ldrIntent = new Intent();
+                ldrIntent.putExtra(OPERATION_RESULT, operation);
+                setResult(RESULT_OK, ldrIntent);
+                finish();
             }
         });
     }
@@ -235,27 +248,37 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 EditText inc = (EditText) findViewById(R.id.STR_INCREMENT);
                 int destination = Integer.parseInt(dest.getText().toString());
                 int increment = Integer.parseInt(inc.getText().toString());
+                String operation = "";
 
                 if (radioReg.isChecked() && !radioPreMod.isChecked() &&
                         !radioPre.isChecked() && !radioPost.isChecked()) {
                     ac.str(destination);
+                    operation = "STR r" + destination + ", [sp]";
 
                 } else if (radioPreMod.isChecked() && !radioReg.isChecked() &&
                         !radioPre.isChecked() && !radioPost.isChecked()) {
                     int[] i = ac.decimalToUnsignedBinary(increment, 32);
                     ac.strPre(destination, i, true);
+                    operation = "STR r" + destination + ", [sp, #" + increment + "]!";
 
                 } else if (radioPre.isChecked() && !radioPreMod.isChecked() &&
                         !radioReg.isChecked() && !radioPost.isChecked()) {
                     int[] i = ac.decimalToUnsignedBinary(increment, 32);
                     ac.strPre(destination, i, false);
+                    operation = "STR r" + destination + ", [sp, #" + increment + "]";
 
                 } else if (radioPost.isChecked() && !radioPreMod.isChecked() &&
                         !radioPre.isChecked() && !radioReg.isChecked()) {
                     int[] i = ac.decimalToUnsignedBinary(increment, 32);
                     ac.strPost(destination, i);
+                    operation = "STR r" + destination + ", [sp], #" + increment;
 
                 }
+
+                Intent strIntent = new Intent();
+                strIntent.putExtra(OPERATION_RESULT, operation);
+                setResult(RESULT_OK, strIntent);
+                finish();
             }
         });
     }

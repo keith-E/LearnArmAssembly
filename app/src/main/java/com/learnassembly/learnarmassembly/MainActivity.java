@@ -326,10 +326,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if(requestCode == OPERATION_REQUEST) {
             if(resultCode == RESULT_OK) {
-                String dr = data.getStringExtra(OperationNameActivity.OPERATION_RESULT);
-                int regNum = Integer.parseInt(dr);
-
-                setRegisterBankOnDisplay(regNum);
+                String operation = data.getStringExtra(OperationNameActivity.OPERATION_RESULT);
+                setOperationInEditor(operation);
                 mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
             }
         }
@@ -348,7 +346,6 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 return (TextView) findViewById(R.id.r3Contents);
             case 4:
-
                 return (TextView) findViewById(R.id.r4Contents);
             case 5:
                 return (TextView) findViewById(R.id.r5Contents);
@@ -395,6 +392,11 @@ public class MainActivity extends AppCompatActivity {
         String branchTextForView = TAB + TAB + TAB + "<font color='red'>b</font> <font color='blue'>"
                                    + branchName + "</font>";
         setEditorLineBasedOnFocus(branchTextForView);
+    }
+
+    private void setOperationInEditor(String operation) {
+        String operationTextForView = TAB + TAB + TAB + "<font color='#6c5ce7'>" + operation + "</font>";
+        setEditorLineBasedOnFocus(operationTextForView);
     }
 
     private void setEditorLineBasedOnFocus(String textToSetInView) {
