@@ -202,9 +202,20 @@
                 android:layout_weight="1">
 
                 <LinearLayout
+                    android:id="@+id/linearlayout_main_memory_address_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_main_memory_address_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" />
+                    android:orientation="vertical">
+
+                </LinearLayout>
             </ScrollView>
         </LinearLayout>
 

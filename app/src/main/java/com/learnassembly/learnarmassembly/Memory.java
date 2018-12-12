@@ -1,12 +1,14 @@
 package com.learnassembly.learnarmassembly;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Map;
 
 /*
     Represents the available memory.
  */
 public class Memory {
     private HashMap<ArrayList<Integer>, int[]> memory = new HashMap<>();
+    private Map<ArrayList<Integer>, int[]> condensedMemory;
 
     /*
         Initializes the memory with the memory
@@ -18,16 +20,21 @@ public class Memory {
             int[] zeros = new int[32];
             memory.put(address, zeros);
         }
+        condensedMemory = new HashMap<>();
+    }
+
+    public Map<ArrayList<Integer>, int[]> getCondensedMemory() {
+        return condensedMemory;
     }
 
     /*
         Sets the given memory address to the given value.
      */
     public void setMemory(ArrayList<Integer> address, int[] value) {
-        if (memory.containsKey(address))
+        if (memory.containsKey(address)) {
             memory.put(address, value);
-
-        else
+            condensedMemory.put(address, value);
+        } else
             System.err.println("Invalid memory address.");
     }
 

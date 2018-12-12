@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String LABEL_COLON = ":";
 
     private LinearLayout mCoreButtonLinearLayout;
+    private LinearLayout mMemoryAddressLinearLayout;
+    private LinearLayout mMemoryValueLinearLayout;
     private TextView mEditorLineOneContent;
     private TextView mEditorLineTwoContent;
     private TextView mEditorLineThreeContent;
@@ -102,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeLayouts() {
         mCoreButtonLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_core_buttonlayout);
+        mMemoryAddressLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_memory_address_label);
+        mMemoryValueLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_memory_address_value);
     }
 
     private void initializeButtons() {
@@ -243,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 16; i++) {
                     setRegisterBankOnDisplay(i);
                 }
+//                setMemoryViewContents();
             }
         });
         /*mStepButton.setOnClickListener(new View.OnClickListener() {
@@ -285,6 +291,10 @@ public class MainActivity extends AppCompatActivity {
         mCodeMap.clear();
         mEditorFocus = 0;
         mBranchNameList.clear();
+        registerBank = new RegisterBank();
+        memory = new Memory();
+        stackPointer = new StackPointer();
+        ac = new ArmController(registerBank, memory, stackPointer);
         mBranchButton.setVisibility(View.GONE);
         mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
     }
@@ -337,6 +347,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setMemoryViewContents() {
+        Map<ArrayList<Integer>, int[]> condensedMMemory = memory.getCondensedMemory();
+        for(Map.Entry<ArrayList<Integer>, int[]> entry : condensedMMemory.entrySet()) {
+            ArrayList<Integer> binaryMemoryAddress = entry.getKey();
+//            createMemoryAddressTextView(binaryMemoryAddress);
+            int[] memoryValue = entry.getValue();
+//            createMemoryValueTextView(memoryValue);
+        }
+    }
+
+    private void createMemoryAddressTextView(ArrayList<Integer> binaryMemoryAddress) {
+        String memoryAddressInHexString = ViewConversion.memoryAddressHexString(binaryMemoryAddress);
+        TextView newMemoryAddressTextView = new TextView(this);
+        newMemoryAddressTextView.setText(memoryAddressInHexString);
+        mMemoryAddressLinearLayout.addView(newMemoryAddressTextView);
+    }
+
+    private void createMemoryValueTextView(int[] memoryValue) {
+        String memoryValueInBinaryString = ViewConversion.binaryToString(memoryValue);
+        TextView newMemoryValueTextView = new TextView(this);
+        newMemoryValueTextView.setText(memoryValueInBinaryString);
+//        newMemoryValueTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        mMemoryValueLinearLayout.addView(newMemoryValueTextView);
+    }
+
     private void setRegisterBankOnDisplay(int register) {
         int[] binaryNumber = registerBank.getRegister(register);
         String binaryString = ViewConversion.binaryToString(binaryNumber);
@@ -344,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
         TextView registerContents = determineRegisterID(register);
         registerContents.setText(binaryString);
     }
+
 
     private TextView determineRegisterID(int regNum) {
         TextView registerContent;
