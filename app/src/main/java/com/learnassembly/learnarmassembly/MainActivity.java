@@ -362,6 +362,9 @@ public class MainActivity extends AppCompatActivity {
         String memoryAddressInHexString = ViewConversion.memoryAddressHexString(binaryMemoryAddress);
         TextView newMemoryAddressTextView = new TextView(this);
         newMemoryAddressTextView.setText(memoryAddressInHexString);
+        newMemoryAddressTextView.setBackgroundColor(Color.parseColor("#ffeaa7"));
+        newMemoryAddressTextView.setWidth(80);
+        newMemoryAddressTextView.setTextSize(12);
         return newMemoryAddressTextView;
     }
 
@@ -370,14 +373,16 @@ public class MainActivity extends AppCompatActivity {
         TextView newMemoryValueTextView = new TextView(this);
         newMemoryValueTextView.setText(memoryValueInBinaryString);
         newMemoryValueTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        newMemoryValueTextView.setTextSize(12);
+        newMemoryValueTextView.setBackgroundColor(Color.parseColor("#ffeaa7"));
         return newMemoryValueTextView;
     }
 
     private void createNewTableRowInMemoryLayout(TextView memAddress, TextView memValue) {
-        TableRow newMemoryRow = new TableRow(this);
-        newMemoryRow.addView(memAddress);
-        newMemoryRow.addView(memValue);
-        mMemoryContentsTableLayout.addView(newMemoryRow);
+        LinearLayout newMemoryLayout = new LinearLayout(this);
+        newMemoryLayout.addView(memAddress);
+        newMemoryLayout.addView(memValue);
+        mMemoryContentsTableLayout.addView(newMemoryLayout);
     }
 
     private void setRegisterBankOnDisplay(int register) {
