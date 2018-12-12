@@ -12,6 +12,8 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -34,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LABEL_COLON = ":";
 
     private LinearLayout mCoreButtonLinearLayout;
-    private LinearLayout mMemoryAddressLinearLayout;
-    private LinearLayout mMemoryValueLinearLayout;
+    private LinearLayout mMemoryContentsTableLayout;
     private TextView mEditorLineOneContent;
     private TextView mEditorLineTwoContent;
     private TextView mEditorLineThreeContent;
@@ -105,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeLayouts() {
         mCoreButtonLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_core_buttonlayout);
-        mMemoryAddressLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_memory_address_label);
-        mMemoryValueLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_memory_address_value);
+        mMemoryContentsTableLayout = (LinearLayout) findViewById(R.id.tablelayout_memorycontents);
     }
 
     private void initializeButtons() {
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 16; i++) {
                     setRegisterBankOnDisplay(i);
                 }
-//                setMemoryViewContents();
+                setMemoryViewContents();
             }
         });
         /*mStepButton.setOnClickListener(new View.OnClickListener() {
@@ -351,25 +351,33 @@ public class MainActivity extends AppCompatActivity {
         Map<ArrayList<Integer>, int[]> condensedMMemory = memory.getCondensedMemory();
         for(Map.Entry<ArrayList<Integer>, int[]> entry : condensedMMemory.entrySet()) {
             ArrayList<Integer> binaryMemoryAddress = entry.getKey();
-//            createMemoryAddressTextView(binaryMemoryAddress);
+            TextView memoryAddressTextView = createMemoryAddressTextView(binaryMemoryAddress);
             int[] memoryValue = entry.getValue();
-//            createMemoryValueTextView(memoryValue);
+            TextView memoryValueTextView = createMemoryValueTextView(memoryValue);
+            createNewTableRowInMemoryLayout(memoryAddressTextView, memoryValueTextView);
         }
     }
 
-    private void createMemoryAddressTextView(ArrayList<Integer> binaryMemoryAddress) {
+    private TextView createMemoryAddressTextView(ArrayList<Integer> binaryMemoryAddress) {
         String memoryAddressInHexString = ViewConversion.memoryAddressHexString(binaryMemoryAddress);
         TextView newMemoryAddressTextView = new TextView(this);
         newMemoryAddressTextView.setText(memoryAddressInHexString);
-        mMemoryAddressLinearLayout.addView(newMemoryAddressTextView);
+        return newMemoryAddressTextView;
     }
 
-    private void createMemoryValueTextView(int[] memoryValue) {
+    private TextView createMemoryValueTextView(int[] memoryValue) {
         String memoryValueInBinaryString = ViewConversion.binaryToString(memoryValue);
         TextView newMemoryValueTextView = new TextView(this);
         newMemoryValueTextView.setText(memoryValueInBinaryString);
-//        newMemoryValueTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        mMemoryValueLinearLayout.addView(newMemoryValueTextView);
+        newMemoryValueTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        return newMemoryValueTextView;
+    }
+
+    private void createNewTableRowInMemoryLayout(TextView memAddress, TextView memValue) {
+        TableRow newMemoryRow = new TableRow(this);
+        newMemoryRow.addView(memAddress);
+        newMemoryRow.addView(memValue);
+        mMemoryContentsTableLayout.addView(newMemoryRow);
     }
 
     private void setRegisterBankOnDisplay(int register) {
