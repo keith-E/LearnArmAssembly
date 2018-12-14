@@ -121,7 +121,7 @@ public class OperationNameActivity extends MainActivity implements AdapterView.O
                 if (radioCons.isChecked() && !radioReg.isChecked()) {
                     int[] cons = ac.decimalToUnsignedBinary(source, 32);
                     ac.mov(destination, cons);
-                    operation = "MOV r" + destination + ", " + source;
+                    operation = "MOV r" + destination + ", #" + source;
 
                 } else if (radioReg.isChecked() && !radioCons.isChecked()) {
                     ac.mov(destination, source);
