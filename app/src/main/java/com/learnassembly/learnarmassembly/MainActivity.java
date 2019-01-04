@@ -2,8 +2,6 @@ package com.learnassembly.learnarmassembly;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Region;
-import android.media.VolumeShaper;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +10,8 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LABEL_COLON = ":";
 
     private LinearLayout mCoreButtonLinearLayout;
+    private LinearLayout mMemoryContentsBaseLinearLayout;
     private TextView mEditorLineOneContent;
     private TextView mEditorLineTwoContent;
     private TextView mEditorLineThreeContent;
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeLayouts() {
         mCoreButtonLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_main_core_buttonlayout);
+        mMemoryContentsBaseLinearLayout = (LinearLayout) findViewById(R.id.linearlayout_memorycontents);
     }
 
     private void initializeButtons() {
@@ -243,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 16; i++) {
                     setRegisterBankOnDisplay(i);
                 }
+                setMemoryViewContents();
             }
         });
         /*mStepButton.setOnClickListener(new View.OnClickListener() {
@@ -285,6 +288,10 @@ public class MainActivity extends AppCompatActivity {
         mCodeMap.clear();
         mEditorFocus = 0;
         mBranchNameList.clear();
+        registerBank = new RegisterBank();
+        memory = new Memory();
+        stackPointer = new StackPointer();
+        ac = new ArmController(registerBank, memory, stackPointer);
         mBranchButton.setVisibility(View.GONE);
         mCoreButtonLinearLayout.setVisibility(View.INVISIBLE);
     }
@@ -337,6 +344,51 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setMemoryViewContents() {
+        Map<ArrayList<Integer>, int[]> condensedMMemory = memory.getCondensedMemory();
+        for(Map.Entry<ArrayList<Integer>, int[]> entry : condensedMMemory.entrySet()) {
+            ArrayList<Integer> binaryMemoryAddress = entry.getKey();
+            TextView memoryAddressTextView = createMemoryAddressTextView(binaryMemoryAddress);
+            int[] memoryValue = entry.getValue();
+            TextView memoryValueTextView = createMemoryValueTextView(memoryValue);
+            createNewLinearLayoutInMemoryLayout(memoryAddressTextView, memoryValueTextView);
+        }
+    }
+
+    private TextView createMemoryAddressTextView(ArrayList<Integer> binaryMemoryAddress) {
+        String memoryAddressInHexString = ViewConversion.memoryAddressHexString(binaryMemoryAddress);
+        TextView newMemoryAddressTextView = new TextView(this);
+        newMemoryAddressTextView.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+//        newMemoryAddressTextView.setText(memoryAddressInHexString);
+        newMemoryAddressTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        newMemoryAddressTextView.setBackgroundColor(Color.parseColor("#ffeaa7"));
+        newMemoryAddressTextView.setTextSize(7);
+        newMemoryAddressTextView.setText("0x0000");
+        return newMemoryAddressTextView;
+    }
+
+    private TextView createMemoryValueTextView(int[] memoryValue) {
+        String memoryValueInBinaryString = ViewConversion.binaryToString(memoryValue);
+        TextView newMemoryValueTextView = new TextView(this);
+        newMemoryValueTextView.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+//        newMemoryValueTextView.setText(memoryValueInBinaryString);
+        newMemoryValueTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        newMemoryValueTextView.setBackgroundColor(Color.parseColor("#ffeaa7"));
+        newMemoryValueTextView.setTextSize(7);
+        newMemoryValueTextView.setText(R.string.thirtyTwoBitBinaryZero);
+        return newMemoryValueTextView;
+    }
+
+    private void createNewLinearLayoutInMemoryLayout(TextView memAddress, TextView memValue) {
+        LinearLayout newMemoryLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        newMemoryLayout.setLayoutParams(layoutParams);
+        newMemoryLayout.setOrientation(LinearLayout.HORIZONTAL);
+        newMemoryLayout.addView(memAddress);
+        newMemoryLayout.addView(memValue);
+        mMemoryContentsBaseLinearLayout.addView(newMemoryLayout);
+    }
+
     private void setRegisterBankOnDisplay(int register) {
         int[] binaryNumber = registerBank.getRegister(register);
         String binaryString = ViewConversion.binaryToString(binaryNumber);
@@ -344,6 +396,7 @@ public class MainActivity extends AppCompatActivity {
         TextView registerContents = determineRegisterID(register);
         registerContents.setText(binaryString);
     }
+
 
     private TextView determineRegisterID(int regNum) {
         TextView registerContent;
